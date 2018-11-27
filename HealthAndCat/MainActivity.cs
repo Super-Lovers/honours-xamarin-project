@@ -21,6 +21,7 @@ namespace HealthAndCat
         private bool _isCatClicked = false;
 
         private Button _storeButton;
+        private Button _inventoryButton;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -42,6 +43,10 @@ namespace HealthAndCat
             _storeButton = FindViewById<Button>(Resource.Id.button1);
             _storeButton.Click += OnStoreClick;
 
+            // Button for opening the Store activity
+            _inventoryButton = FindViewById<Button>(Resource.Id.button2);
+            _inventoryButton.Click += OnInventoryClick;
+
             // The timer handles the text view's content after
             // every interval of milliseconds.
             Timer myTimer = new Timer();
@@ -55,7 +60,13 @@ namespace HealthAndCat
             Intent intent = new Intent(this, typeof(Store));
             StartActivity(intent);
         }
-        
+
+        public void OnInventoryClick(object sender, EventArgs e)
+        {
+            Intent intent = new Intent(this, typeof(Inventory));
+            StartActivity(intent);
+        }
+
         public void OnClickedCat(object sender, EventArgs e)
         {
             if (_isCatClicked)

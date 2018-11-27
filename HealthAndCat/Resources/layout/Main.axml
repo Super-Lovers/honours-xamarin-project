@@ -64,6 +64,11 @@
                 p1:layout_width="match_parent" />
         </LinearLayout>
     </LinearLayout>
+    <Button
+        p1:text="Inventory"
+        p1:layout_width="match_parent"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/button2" />
     <ImageView
         p1:src="@drawable/screenshot_83"
         p1:layout_width="match_parent"

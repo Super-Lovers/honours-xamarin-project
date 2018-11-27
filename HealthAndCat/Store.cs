@@ -19,7 +19,7 @@ namespace HealthAndCat.Resources.layout
         public LinearLayout FoodsLayout;
         public LinearLayout ToysLayout;
         private bool _toggleTab;
-        private TextView _currentView;
+        private TextView _currentCash;
 
         #region Food values in store - Page 1
         //public ImageView OatsView;
@@ -77,8 +77,8 @@ namespace HealthAndCat.Resources.layout
             // Create your application here
             SetContentView(Resource.Layout.Store);
 
-            _currentView = FindViewById<TextView>(Resource.Id.textView2);
-            _currentView.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
+            _currentCash = FindViewById<TextView>(Resource.Id.textView2);
+            _currentCash.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
 
             toggleFoodAndToys = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             toggleFoodAndToys.Click += ToggleFoodAndToys;
@@ -354,7 +354,7 @@ namespace HealthAndCat.Resources.layout
             }
 
             // Updating the player's cash after he makes a transaction.
-            _currentView.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
+            _currentCash.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
         }
     }
 }
