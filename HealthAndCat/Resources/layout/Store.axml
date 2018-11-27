@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1">
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/gridLayout1"
+            android:layout_gravity="center"
+            android:padding="5dp">
+            <TextView
+                android:text="Store"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView1" />
+            <Space
+                android:id="@+id/space1"
+                android:layout_width="50dp" />
+            <TextView
+                android:text="Medium Text"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/textView2" />
+        </GridLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout3">
+        <ToggleButton
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/toggleButton1"
+            android:textOn="Show Food"
+            android:textOff="Show Toys"
+            android:layout_gravity="center" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Foods"
+            android:padding="15dp"
+            android:visibility="visible">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gridLayout1"
+                android:layout_gravity="center"
+                android:rowCount="1"
+                android:columnCount="5"
+                android:padding="15dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="0">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="0"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Oats"
+                        android:textAlignment="center"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy1"
+                        android:tag="Oats" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell1"
+                        android:tag="Oats" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:layout_width="15dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="2">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Cheese"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy2"
+                        android:tag="Cheese" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell2"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Cheese" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:layout_width="15dp"
+                    android:visibility="visible" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="4">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Eggs"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy3"
+                        android:tag="Egg" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell3"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Egg" />
+                </LinearLayout>
+            </GridLayout>
+            <GridLayout
+                android:id="@+id/gridLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:rowCount="1"
+                android:columnCount="5"
+                android:padding="15dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_columnWeight="1">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Chicken"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy4"
+                        android:tag="Chicken" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell4"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Chicken" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_width="15dp"
+                    android:layout_row="0"
+                    android:layout_column="1" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="2">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Fish"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy5"
+                        android:tag="Fish" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell5"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Fish" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_row="0"
+                    android:layout_column="3"
+                    android:layout_width="15dp" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:layout_row="0"
+                    android:layout_column="4"
+                    android:id="@+id/linearLayout2">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Turkey"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy6"
+                        android:tag="Turkey" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell6"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Turkey" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/Toys"
+            android:visibility="visible"
+            android:padding="15dp">
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/gridLayout1"
+                android:layout_gravity="center"
+                android:rowCount="1"
+                android:columnCount="5"
+                android:padding="15dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="0">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/CastleToy"
+                        android:textAlignment="center"
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy7"
+                        android:tag="Castle Toy" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell7"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Castle Toy" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_width="15dp"
+                    android:layout_row="0"
+                    android:layout_column="1" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="2">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/BallToy"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy8"
+                        android:tag="Ball Toy" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell8"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Ball Toy" />
+                </LinearLayout>
+                <Space
+                    android:id="@+id/space1"
+                    android:layout_width="15dp"
+                    android:layout_row="0"
+                    android:layout_column="3" />
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:minWidth="25px"
+                    android:minHeight="25px"
+                    android:id="@+id/linearLayout2"
+                    android:layout_row="0"
+                    android:layout_column="4">
+                    <ImageView
+                        android:src="@android:drawable/ic_menu_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView1"
+                        android:layout_gravity="center" />
+                    <TextView
+                        android:text="Small Text"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/MouseToy"
+                        android:textAlignment="center"
+                        android:layout_gravity="center" />
+                    <Button
+                        android:text="Buy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Buy9"
+                        android:tag="Mouse Toy" />
+                    <Button
+                        android:text="Sell"
+                        android:layout_width="match_parent"
+                        android:layout_height="35.5dp"
+                        android:id="@+id/Sell9"
+                        android:layout_marginTop="0.0dp"
+                        android:tag="Mouse Toy" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
