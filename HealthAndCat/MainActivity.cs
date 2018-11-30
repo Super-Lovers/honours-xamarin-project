@@ -30,11 +30,34 @@ namespace HealthAndCat
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+            // If the player has started the game before, then we can extract
+            // his already existing profile data instead of starting a new one
+            // and resetting his progress.
+            if (localSlaveData.Contains("Player Cash"))
+            {
+                //PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
+                localSlaveDataEdit.PutInt("Player Cash", 100);
+                localSlaveDataEdit.Commit();
+                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
+            } else
+            {
+                localSlaveDataEdit.PutInt("Player Cash", 100);
+                localSlaveDataEdit.Commit();
+                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
+            }
+            Console.WriteLine("Player Currency: " + PlayerCurrency);
+                //localSlaveDataEdit.PutBoolean("Has Initialized Profile", true);
+                //Console.WriteLine("SECOND " + localSlaveData.GetBoolean("Has Initialized Profile", false));
+            
+            // Pushes the new file edit changes to the source file.
+
             CatView = FindViewById<ImageView>(Resource.Id.imageView1);
             CatView.Click += OnClickedCat;
 
             _currencyView = FindViewById<TextView>(Resource.Id.textView2);
-            _currencyView.Text = "Cash: " + PlayerCurrency.ToString();
+            _currencyView.Text = "Cash: " + PlayerCurrency;
 
             ClockView = FindViewById<TextView>(Resource.Id.textView1);
             ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;

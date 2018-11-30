@@ -77,8 +77,10 @@ namespace HealthAndCat.Resources.layout
             // Create your application here
             SetContentView(Resource.Layout.Store);
 
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
             _currentCash = FindViewById<TextView>(Resource.Id.textView2);
-            _currentCash.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
+            _currentCash.Text = "Cash: " + localSlaveData.GetInt("Player Cash", 0);
 
             toggleFoodAndToys = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             toggleFoodAndToys.Click += ToggleFoodAndToys;
@@ -105,7 +107,7 @@ namespace HealthAndCat.Resources.layout
 
             #region Toy views in store - Page 2
             CastleToy = FindViewById<TextView>(Resource.Id.CastleToy);
-            CastleToy.Text = "Castle - $" + CastleToyCost.ToString();
+            CastleToy.Text = "Castle - $" + BallToyCost.ToString();
 
             BallToy = FindViewById<TextView>(Resource.Id.BallToy);
             BallToy.Text = "Ball - $" + BallToyCost.ToString();
@@ -239,6 +241,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= OatsFoodCost;
                             Oats += 1;
+
+                            CommitIntToStorage("Oats Food", Oats);
                         }
                         break;
                     case "Cheese":
@@ -246,6 +250,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= CheeseFoodCost;
                             Cheese += 1;
+
+                            CommitIntToStorage("Cheese Food", Cheese);
                         }
                         break;
                     case "Egg":
@@ -253,6 +259,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= EggsFoodCost;
                             Eggs += 1;
+
+                            CommitIntToStorage("Egg Food", Eggs);
                         }
                         break;
                     case "Chicken":
@@ -260,6 +268,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= ChickenFoodCost;
                             Chicken += 1;
+
+                            CommitIntToStorage("Chicken Food", Chicken);
                         }
                         break;
                     case "Fish":
@@ -267,6 +277,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= FishFoodCost;
                             Fish += 1;
+
+                            CommitIntToStorage("Fish Food", Fish);
                         }
                         break;
                     case "Turkey":
@@ -274,6 +286,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= TurkeyFoodCost;
                             Turkey += 1;
+
+                            CommitIntToStorage("Turkey Food", Turkey);
                         }
                         break;
                 }
@@ -289,6 +303,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += CastleToyCost;
                             CastleToys -= 1;
+
+                            CommitIntToStorage("Castle Toys", CastleToys);
                         }
                         break;
                     case "Ball Toy":
@@ -296,6 +312,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += BallToyCost;
                             BallToys -= 1;
+
+                            CommitIntToStorage("Ball Toys", BallToys);
                         }
                         break;
                     case "Mouse Toy":
@@ -303,6 +321,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += MouseToyCost;
                             MouseToys -= 1;
+
+                            CommitIntToStorage("Mouse Toys", MouseToys);
                         }
                         break;
                     // ******
@@ -313,6 +333,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += OatsFoodCost;
                             Oats -= 1;
+
+                            CommitIntToStorage("Oats Food", Oats);
                         }
                         break;
                     case "Cheese":
@@ -320,6 +342,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += CheeseFoodCost;
                             Cheese -= 1;
+
+                            CommitIntToStorage("Cheese Food", Cheese);
                         }
                         break;
                     case "Egg":
@@ -327,6 +351,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += EggsFoodCost;
                             Eggs -= 1;
+
+                            CommitIntToStorage("Egg Food", Eggs);
                         }
                         break;
                     case "Chicken":
@@ -334,6 +360,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += ChickenFoodCost;
                             Chicken -= 1;
+
+                            CommitIntToStorage("Chicken Food", Chicken);
                         }
                         break;
                     case "Fish":
@@ -341,6 +369,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += FishFoodCost;
                             Fish -= 1;
+
+                            CommitIntToStorage("Fish Food", Fish);
                         }
                         break;
                     case "Turkey":
@@ -348,13 +378,28 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency += TurkeyFoodCost;
                             Turkey -= 1;
+
+                            CommitIntToStorage("Turkey Food", Turkey);
                         }
                         break;
                 }
             }
 
             // Updating the player's cash after he makes a transaction.
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+            localSlaveDataEdit.PutInt("Player Cash", MainActivity.PlayerCurrency);
+            localSlaveDataEdit.Commit();
             _currentCash.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
+        }
+
+        public void CommitIntToStorage(string key, int value)
+        {
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+            localSlaveDataEdit.PutInt(key, value);
+            // Pushes the new file edit changes to the source file.
+            localSlaveDataEdit.Commit();
         }
     }
 }

@@ -43,36 +43,112 @@ namespace HealthAndCat
 
             SetContentView(Resource.Layout.Inventory);
 
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
             toggleFoodAndToys = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             toggleFoodAndToys.Click += ToggleFoodAndToys;
 
             #region Food views in store - Page 1
+
+            if (localSlaveData.Contains("Oats Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Oats = localSlaveData.GetInt("Oats Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Oats = 0;
+            }
             OatsLabel = FindViewById<TextView>(Resource.Id.Oats);
             OatsLabel.Text = HealthAndCat.Resources.layout.Store.Oats.ToString();
 
+            if (localSlaveData.Contains("Cheese Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Cheese = localSlaveData.GetInt("Cheese Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Cheese = 0;
+            }
             CheeseLabel = FindViewById<TextView>(Resource.Id.Cheese);
             CheeseLabel.Text = HealthAndCat.Resources.layout.Store.Cheese.ToString();
 
+            if (localSlaveData.Contains("Egg Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Eggs = localSlaveData.GetInt("Egg Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Eggs = 0;
+            }
             EggsLabel = FindViewById<TextView>(Resource.Id.Eggs);
             EggsLabel.Text = HealthAndCat.Resources.layout.Store.Eggs.ToString();
 
+            if (localSlaveData.Contains("Chicken Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Chicken = localSlaveData.GetInt("Chicken Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Chicken = 0;
+            }
             ChickenLabel = FindViewById<TextView>(Resource.Id.Chicken);
             ChickenLabel.Text = HealthAndCat.Resources.layout.Store.Chicken.ToString();
 
+            if (localSlaveData.Contains("Fish Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Fish = localSlaveData.GetInt("Fish Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Fish = 0;
+            }
             FishLabel = FindViewById<TextView>(Resource.Id.Fish);
             FishLabel.Text = HealthAndCat.Resources.layout.Store.Fish.ToString();
 
+            if (localSlaveData.Contains("Turkey Food"))
+            {
+                HealthAndCat.Resources.layout.Store.Turkey = localSlaveData.GetInt("Turkey Food", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.Turkey = 0;
+            }
             TurkeyLabel = FindViewById<TextView>(Resource.Id.Turkey);
             TurkeyLabel.Text = HealthAndCat.Resources.layout.Store.Turkey.ToString();
             #endregion
 
             #region Toy views in store - Page 2
+
+            if (localSlaveData.Contains("Castle Toys"))
+            {
+                HealthAndCat.Resources.layout.Store.CastleToys = localSlaveData.GetInt("Castle Toys", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.CastleToys = 0;
+            }
             CastleToy = FindViewById<TextView>(Resource.Id.CastleToy);
             CastleToy.Text = HealthAndCat.Resources.layout.Store.CastleToys.ToString();
 
+            if (localSlaveData.Contains("Ball Toys"))
+            {
+                HealthAndCat.Resources.layout.Store.BallToys = localSlaveData.GetInt("Ball Toys", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.BallToys = 0;
+            }
             BallToy = FindViewById<TextView>(Resource.Id.BallToy);
             BallToy.Text = HealthAndCat.Resources.layout.Store.BallToys.ToString();
 
+            if (localSlaveData.Contains("Mouse Toys"))
+            {
+                HealthAndCat.Resources.layout.Store.MouseToys = localSlaveData.GetInt("Mouse Toys", 0);
+            }
+            else
+            {
+                HealthAndCat.Resources.layout.Store.MouseToys = 0;
+            }
             MouseToy = FindViewById<TextView>(Resource.Id.MouseToy);
             MouseToy.Text = HealthAndCat.Resources.layout.Store.MouseToys.ToString();
             #endregion
@@ -112,6 +188,15 @@ namespace HealthAndCat
             }
             #endregion
 
+
+            /*
+            // Creating a new file with custom name and access level
+            localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            // and then editing that file with the new variable that uses editing mode.
+            var localSlaveDataEdit = localSlaveData.Edit();
+            localSlaveData.GetInt("Castle Toys", 0);
+            */
+
             FoodsLayout = FindViewById<LinearLayout>(Resource.Id.Foods);
             FoodsLayout.Visibility = ViewStates.Visible;
             ToysLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
@@ -137,6 +222,7 @@ namespace HealthAndCat
         private void UseItem(object sender, EventArgs e)
         {
             Button buttonClicked = (Button)sender;
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
 
             switch (buttonClicked.Tag.ToString())
             {
@@ -147,7 +233,9 @@ namespace HealthAndCat
                     if (HealthAndCat.Resources.layout.Store.CastleToys > 0)
                     {
                         HealthAndCat.Resources.layout.Store.CastleToys--;
-                        CastleToy.Text = HealthAndCat.Resources.layout.Store.CastleToys.ToString();
+                        CastleToy.Text = localSlaveData.GetInt("Castle Toys", 0).ToString();
+
+                        CommitIntToStorage("Castle Toys", HealthAndCat.Resources.layout.Store.CastleToys);
                     }
                     break;
                 case "Ball Toy":
@@ -155,6 +243,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.BallToys--;
                         BallToy.Text = HealthAndCat.Resources.layout.Store.BallToys.ToString();
+
+                        CommitIntToStorage("Ball Toys", HealthAndCat.Resources.layout.Store.BallToys);
                     }
                     break;
                 case "Mouse Toy":
@@ -162,6 +252,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.MouseToys--;
                         MouseToy.Text = HealthAndCat.Resources.layout.Store.MouseToys.ToString();
+
+                        CommitIntToStorage("Mouse Toys", HealthAndCat.Resources.layout.Store.MouseToys);
                     }
                     break;
                 // ******
@@ -172,6 +264,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Oats--;
                         OatsLabel.Text = HealthAndCat.Resources.layout.Store.Oats.ToString();
+
+                        CommitIntToStorage("Oats Food", HealthAndCat.Resources.layout.Store.Oats);
                     }
                     break;
                 case "Cheese":
@@ -179,6 +273,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Cheese--;
                         CheeseLabel.Text = HealthAndCat.Resources.layout.Store.Cheese.ToString();
+
+                        CommitIntToStorage("Cheese Food", HealthAndCat.Resources.layout.Store.Cheese);
                     }
                     break;
                 case "Egg":
@@ -186,6 +282,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Eggs--;
                         EggsLabel.Text = HealthAndCat.Resources.layout.Store.Eggs.ToString();
+
+                        CommitIntToStorage("Egg Food", HealthAndCat.Resources.layout.Store.Eggs);
                     }
                     break;
                 case "Chicken":
@@ -193,6 +291,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Chicken--;
                         ChickenLabel.Text = HealthAndCat.Resources.layout.Store.Chicken.ToString();
+
+                        CommitIntToStorage("Chicken Food", HealthAndCat.Resources.layout.Store.Chicken);
                     }
                     break;
                 case "Fish":
@@ -200,6 +300,8 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Fish--;
                         FishLabel.Text = HealthAndCat.Resources.layout.Store.Fish.ToString();
+
+                        CommitIntToStorage("Fish Food", HealthAndCat.Resources.layout.Store.Fish);
                     }
                     break;
                 case "Turkey":
@@ -207,9 +309,20 @@ namespace HealthAndCat
                     {
                         HealthAndCat.Resources.layout.Store.Turkey--;
                         TurkeyLabel.Text = HealthAndCat.Resources.layout.Store.Turkey.ToString();
+
+                        CommitIntToStorage("Turkey Food", HealthAndCat.Resources.layout.Store.Turkey);
                     }
                     break;
             }
+        }
+
+        public void CommitIntToStorage(string key, int value)
+        {
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+            localSlaveDataEdit.PutInt(key, value);
+            // Pushes the new file edit changes to the source file.
+            localSlaveDataEdit.Commit();
         }
     }
 }
