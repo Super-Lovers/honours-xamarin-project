@@ -2,9 +2,9 @@
 using Android.Widget;
 using Android.OS;
 using System;
-using System.Timers;
 using Android.Content;
 using HealthAndCat.Resources.layout;
+using System.Threading;
 
 namespace HealthAndCat
 {
@@ -72,10 +72,8 @@ namespace HealthAndCat
 
             // The timer handles the text view's content after
             // every interval of milliseconds.
-            Timer myTimer = new Timer();
-            myTimer.Elapsed += new ElapsedEventHandler(UpdateClock);
-            myTimer.Interval = 1000;
-            myTimer.Start();
+            Timer timer = new Timer(new TimerCallback(UpdateClock));
+            timer.Change(1000, 1000);
         }
 
         public void OnStoreClick(object sender, EventArgs e)
@@ -103,10 +101,13 @@ namespace HealthAndCat
             }
         }
 
-        private void UpdateClock(object source, ElapsedEventArgs e)
+        private void UpdateClock(object source)
         {
-            ClockView = FindViewById<TextView>(Resource.Id.textView1);
-            ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            RunOnUiThread(() =>
+            {
+                ClockView = FindViewById<TextView>(Resource.Id.textView1);
+                ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            });
         }
     }
 }
