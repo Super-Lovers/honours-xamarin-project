@@ -283,6 +283,7 @@ namespace HealthAndCat
                     localSlaveDataEdit.Commit();
                 } else
                 {
+                    _takeCatOut.Text = "It's too dark to go out!";
                     _takeCatOut.Enabled = false;
                     localSlaveDataEdit.PutBoolean("TakeCanOut", true);
                     localSlaveDataEdit.Commit();
