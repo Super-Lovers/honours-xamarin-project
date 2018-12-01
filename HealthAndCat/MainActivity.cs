@@ -23,6 +23,7 @@ namespace HealthAndCat
         private Button _storeButton;
         private Button _inventoryButton;
 
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,13 +33,37 @@ namespace HealthAndCat
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
+
+            if (localSlaveData.Contains("Year Of Meal"))
+            {
+                // Getting the date of the last meal and adding
+                // the interval of time between the previous and next meal.
+                DateTime dateOfLastMeal = new DateTime(
+                        localSlaveData.GetInt("Year Of Meal", 0),
+                        localSlaveData.GetInt("Month Of Meal", 0),
+                        localSlaveData.GetInt("Day Of Meal", 0),
+                        localSlaveData.GetInt("Hour Of Meal", 0),
+                        0,
+                        0
+                    ).AddHours(6);
+
+                Console.WriteLine("NOW " + DateTime.Now);
+                Console.WriteLine("LAST MEAL " + dateOfLastMeal);
+
+                // Checking if the interval between the meal the player had is past
+                // the time until the next meal and if so, he can eat again.
+                if (DateTime.Now > dateOfLastMeal)
+                {
+                    localSlaveDataEdit.PutBoolean("CanUseItem", true);
+                }
+            }
             // If the player has started the game before, then we can extract
             // his already existing profile data instead of starting a new one
             // and resetting his progress.
             if (localSlaveData.Contains("Player Cash"))
             {
-                //PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
                 localSlaveDataEdit.PutInt("Player Cash", 100);
+                // Pushes the new file edit changes to the source file.
                 localSlaveDataEdit.Commit();
                 PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
             } else
@@ -47,11 +72,6 @@ namespace HealthAndCat
                 localSlaveDataEdit.Commit();
                 PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
             }
-            Console.WriteLine("Player Currency: " + PlayerCurrency);
-                //localSlaveDataEdit.PutBoolean("Has Initialized Profile", true);
-                //Console.WriteLine("SECOND " + localSlaveData.GetBoolean("Has Initialized Profile", false));
-            
-            // Pushes the new file edit changes to the source file.
 
             CatView = FindViewById<ImageView>(Resource.Id.imageView1);
             CatView.Click += OnClickedCat;
@@ -73,6 +93,9 @@ namespace HealthAndCat
             // The timer handles the text view's content after
             // every interval of milliseconds.
             Timer timer = new Timer(new TimerCallback(UpdateClock));
+            // First parameter is when the event starts after
+            // the activity is initialized and the second parameter
+            // is the interval between each code block execution
             timer.Change(1000, 1000);
         }
 
