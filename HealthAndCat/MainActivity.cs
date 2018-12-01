@@ -135,13 +135,23 @@ namespace HealthAndCat
                         0
                     ).AddHours(3);
 
-                if (DateTime.Now > dateOfLastWalk)
+                //Console.WriteLine("\n WALK AT " + dateOfLastWalk + "\n");
+                //Console.WriteLine("\n" + dateOfLastWalk.Hour + "\n");
+                //Console.WriteLine("\n" + DateTime.Now.Hour + "\n");
+
+                // We want the player to only take his cat out in
+                // daylight because it might be dangerous in the dark.
+                if (DateTime.Now > dateOfLastWalk &&
+                    DateTime.Now.Hour > 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
                 {
                     _takeCatOut.Enabled = true;
                     localSlaveDataEdit.PutBoolean("TakeCanOut", false);
+                    localSlaveDataEdit.Commit();
                 } else
                 {
                     _takeCatOut.Enabled = false;
+                    localSlaveDataEdit.PutBoolean("TakeCanOut", true);
+                    localSlaveDataEdit.Commit();
                 }
             } else
             {
@@ -182,7 +192,19 @@ namespace HealthAndCat
             _currencyView.Text = "Cash: " + PlayerCurrency;
 
             ClockView = FindViewById<TextView>(Resource.Id.textView1);
-            ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+            if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
+            {
+                ClockView.Text = "Morning";
+            } else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
+            {
+                ClockView.Text = "Afternoon";
+            } else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
+            {
+                ClockView.Text = "Evening";
+            } else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
+            {
+                ClockView.Text = "Night";
+            }
 
             // Button for opening the Store activity
             _storeButton = FindViewById<Button>(Resource.Id.button1);
@@ -194,11 +216,11 @@ namespace HealthAndCat
 
             // The timer handles the text view's content after
             // every interval of milliseconds.
-            Timer timer = new Timer(new TimerCallback(UpdateClock));
+            //Timer timer = new Timer(new TimerCallback(UpdateClock));
             // First parameter is when the event starts after
             // the activity is initialized and the second parameter
             // is the interval between each code block execution
-            timer.Change(1000, 1000);
+            //timer.Change(1000, 1000);
         }
 
         public void OnStoreClick(object sender, EventArgs e)
