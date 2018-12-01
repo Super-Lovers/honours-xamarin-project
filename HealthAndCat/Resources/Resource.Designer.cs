@@ -63,32 +63,32 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050018
 			public const int BallToy = 2131034136;
 			
-			// aapt resource value: 0x7f050020
-			public const int Buy1 = 2131034144;
+			// aapt resource value: 0x7f050021
+			public const int Buy1 = 2131034145;
 			
-			// aapt resource value: 0x7f050022
-			public const int Buy2 = 2131034146;
+			// aapt resource value: 0x7f050023
+			public const int Buy2 = 2131034147;
 			
-			// aapt resource value: 0x7f050024
-			public const int Buy3 = 2131034148;
+			// aapt resource value: 0x7f050025
+			public const int Buy3 = 2131034149;
 			
-			// aapt resource value: 0x7f050026
-			public const int Buy4 = 2131034150;
+			// aapt resource value: 0x7f050027
+			public const int Buy4 = 2131034151;
 			
-			// aapt resource value: 0x7f050028
-			public const int Buy5 = 2131034152;
+			// aapt resource value: 0x7f050029
+			public const int Buy5 = 2131034153;
 			
-			// aapt resource value: 0x7f05002a
-			public const int Buy6 = 2131034154;
+			// aapt resource value: 0x7f05002b
+			public const int Buy6 = 2131034155;
 			
-			// aapt resource value: 0x7f05002c
-			public const int Buy7 = 2131034156;
+			// aapt resource value: 0x7f05002d
+			public const int Buy7 = 2131034157;
 			
-			// aapt resource value: 0x7f05002e
-			public const int Buy8 = 2131034158;
+			// aapt resource value: 0x7f05002f
+			public const int Buy8 = 2131034159;
 			
-			// aapt resource value: 0x7f050030
-			public const int Buy9 = 2131034160;
+			// aapt resource value: 0x7f050031
+			public const int Buy9 = 2131034161;
 			
 			// aapt resource value: 0x7f050016
 			public const int CastleToy = 2131034134;
@@ -114,32 +114,32 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050008
 			public const int Oats = 2131034120;
 			
-			// aapt resource value: 0x7f050021
-			public const int Sell1 = 2131034145;
+			// aapt resource value: 0x7f050022
+			public const int Sell1 = 2131034146;
 			
-			// aapt resource value: 0x7f050023
-			public const int Sell2 = 2131034147;
+			// aapt resource value: 0x7f050024
+			public const int Sell2 = 2131034148;
 			
-			// aapt resource value: 0x7f050025
-			public const int Sell3 = 2131034149;
+			// aapt resource value: 0x7f050026
+			public const int Sell3 = 2131034150;
 			
-			// aapt resource value: 0x7f050027
-			public const int Sell4 = 2131034151;
+			// aapt resource value: 0x7f050028
+			public const int Sell4 = 2131034152;
 			
-			// aapt resource value: 0x7f050029
-			public const int Sell5 = 2131034153;
+			// aapt resource value: 0x7f05002a
+			public const int Sell5 = 2131034154;
 			
-			// aapt resource value: 0x7f05002b
-			public const int Sell6 = 2131034155;
+			// aapt resource value: 0x7f05002c
+			public const int Sell6 = 2131034156;
 			
-			// aapt resource value: 0x7f05002d
-			public const int Sell7 = 2131034157;
+			// aapt resource value: 0x7f05002e
+			public const int Sell7 = 2131034158;
 			
-			// aapt resource value: 0x7f05002f
-			public const int Sell8 = 2131034159;
+			// aapt resource value: 0x7f050030
+			public const int Sell8 = 2131034160;
 			
-			// aapt resource value: 0x7f050031
-			public const int Sell9 = 2131034161;
+			// aapt resource value: 0x7f050032
+			public const int Sell9 = 2131034162;
 			
 			// aapt resource value: 0x7f050015
 			public const int Toys = 2131034133;
@@ -174,11 +174,11 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f05001b
 			public const int Use9 = 2131034139;
 			
-			// aapt resource value: 0x7f05001e
-			public const int button1 = 2131034142;
-			
 			// aapt resource value: 0x7f05001f
-			public const int button2 = 2131034143;
+			public const int button1 = 2131034143;
+			
+			// aapt resource value: 0x7f050020
+			public const int button2 = 2131034144;
 			
 			// aapt resource value: 0x7f050001
 			public const int gridLayout1 = 2131034113;
@@ -195,8 +195,8 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050003
 			public const int linearLayout3 = 2131034115;
 			
-			// aapt resource value: 0x7f05001d
-			public const int linearLayout4 = 2131034141;
+			// aapt resource value: 0x7f05001e
+			public const int linearLayout4 = 2131034142;
 			
 			// aapt resource value: 0x7f05000a
 			public const int space1 = 2131034122;
@@ -204,8 +204,11 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050002
 			public const int textView1 = 2131034114;
 			
+			// aapt resource value: 0x7f05001d
+			public const int textView2 = 2131034141;
+			
 			// aapt resource value: 0x7f05001c
-			public const int textView2 = 2131034140;
+			public const int textView3 = 2131034140;
 			
 			// aapt resource value: 0x7f050004
 			public const int toggleButton1 = 2131034116;

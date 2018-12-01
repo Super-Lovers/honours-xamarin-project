@@ -11,6 +11,14 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/linearLayout2">
+        <TextView
+            p1:text="Day Counter"
+            p1:textAppearance="?android:attr/textAppearanceMedium"
+            p1:layout_width="wrap_content"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/textView3"
+            p1:layout_gravity="center"
+            p1:paddingTop="5dp" />
         <LinearLayout
             p1:orientation="vertical"
             p1:minWidth="25px"
@@ -33,7 +41,7 @@
                 p1:layout_gravity="center"
                 p1:padding="5dp">
                 <TextView
-                    p1:text="Medium Text"
+                    p1:text="Cash"
                     p1:textAppearance="?android:attr/textAppearanceMedium"
                     p1:id="@+id/textView2"
                     p1:layout_row="0"
@@ -44,7 +52,7 @@
                     p1:layout_column="1"
                     p1:layout_width="50dp" />
                 <TextView
-                    p1:text="Medium Text"
+                    p1:text="Time"
                     p1:textAppearance="?android:attr/textAppearanceMedium"
                     p1:id="@+id/textView1"
                     p1:layout_row="0"
@@ -62,13 +70,13 @@
                 p1:id="@+id/button1"
                 p1:layout_gravity="center"
                 p1:layout_width="match_parent" />
+            <Button
+                p1:text="Inventory"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button2" />
         </LinearLayout>
     </LinearLayout>
-    <Button
-        p1:text="Inventory"
-        p1:layout_width="match_parent"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/button2" />
     <ImageView
         p1:src="@drawable/screenshot_83"
         p1:layout_width="match_parent"
