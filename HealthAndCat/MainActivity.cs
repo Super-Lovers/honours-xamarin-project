@@ -24,6 +24,7 @@ namespace HealthAndCat
         private Button _storeButton;
         private Button _inventoryButton;
         private Button _takeCatOut;
+        private TextView _walkTimer;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,6 +35,27 @@ namespace HealthAndCat
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
+
+            _walkTimer = FindViewById<TextView>(Resource.Id.textView4);
+
+            if (localSlaveData.GetBoolean("TakenCatOut", false))
+            {
+                _walkTimer.Enabled = true;
+                _walkTimer.Visibility = Android.Views.ViewStates.Visible;
+
+                // The timer handles the text view's content after
+                // every interval of milliseconds.
+                Timer timer = new Timer(new TimerCallback(UpdateClock));
+                // First parameter is when the event starts after
+                // the activity is initialized and the second parameter
+                // is the interval between each code block execution
+                timer.Change(1000, 1000);
+            }
+            else
+            {
+                _walkTimer.Enabled = false;
+                _walkTimer.Visibility = Android.Views.ViewStates.Gone;
+            }
 
             // If the player has started the game before, then we can extract
             // his already existing profile data instead of starting a new one
@@ -213,14 +235,6 @@ namespace HealthAndCat
             // Button for opening the Store activity
             _inventoryButton = FindViewById<Button>(Resource.Id.button2);
             _inventoryButton.Click += OnInventoryClick;
-
-            // The timer handles the text view's content after
-            // every interval of milliseconds.
-            //Timer timer = new Timer(new TimerCallback(UpdateClock));
-            // First parameter is when the event starts after
-            // the activity is initialized and the second parameter
-            // is the interval between each code block execution
-            //timer.Change(1000, 1000);
         }
 
         public void OnStoreClick(object sender, EventArgs e)
@@ -252,13 +266,44 @@ namespace HealthAndCat
         {
             RunOnUiThread(() =>
             {
-                ClockView = FindViewById<TextView>(Resource.Id.textView1);
-                ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
+                var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
+                DateTime dateOfLastWalk = new DateTime(
+                        localSlaveData.GetInt("Year Of Walk", 0),
+                        localSlaveData.GetInt("Month Of Walk", 0),
+                        localSlaveData.GetInt("Day Of Walk", 0),
+                        localSlaveData.GetInt("Hour Of Walk", 0),
+                        0,
+                        0
+                    ).AddHours(3);
+
+                TimeSpan timeUntilNextWalk = dateOfLastWalk - DateTime.Now;
+
+                if (timeUntilNextWalk.Minutes <= 1)
+                {
+                    _walkTimer.Enabled = false;
+                    _walkTimer.Visibility = Android.Views.ViewStates.Gone;
+                }
+
+                _walkTimer.Text = "Returns after: " + timeUntilNextWalk.Hours + "h " + timeUntilNextWalk.Minutes + "m";
+                //ClockView = FindViewById<TextView>(Resource.Id.textView1);
+                //ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             });
         }
 
         private void TakeCatForAWalk(object sender, EventArgs e)
         {
+            _walkTimer.Enabled = true;
+            _walkTimer.Visibility = Android.Views.ViewStates.Visible;
+
+            // The timer handles the text view's content after
+            // every interval of milliseconds.
+            Timer timer = new Timer(new TimerCallback(UpdateClock));
+            // First parameter is when the event starts after
+            // the activity is initialized and the second parameter
+            // is the interval between each code block execution
+            timer.Change(1000, 1000);
+
             _takeCatOut.Enabled = false;
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);

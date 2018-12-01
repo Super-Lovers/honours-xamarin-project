@@ -69,6 +69,15 @@
                 p1:layout_width="match_parent"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/button3" />
+            <TextView
+                p1:textAppearance="?android:attr/textAppearanceSmall"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView4"
+                p1:layout_gravity="center"
+                p1:text="Timer for walk"
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:visibility="visible" />
             <Button
                 p1:text="Store"
                 p1:layout_height="wrap_content"
