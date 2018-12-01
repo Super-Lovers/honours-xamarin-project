@@ -23,7 +23,7 @@ namespace HealthAndCat
 
         private Button _storeButton;
         private Button _inventoryButton;
-
+        private Button _takeCatOut;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,6 +34,21 @@ namespace HealthAndCat
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
+
+            // If the player has started the game before, then we can extract
+            // his already existing profile data instead of starting a new one
+            // and resetting his progress.
+            if (localSlaveData.Contains("Player Cash"))
+            {
+                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
+            }
+            else
+            {
+                localSlaveDataEdit.PutInt("Player Cash", 100);
+                // Pushes the new file edit changes to the source file.
+                localSlaveDataEdit.Commit();
+                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
+            }
 
             DateTime newLoginDay;
 
@@ -47,6 +62,7 @@ namespace HealthAndCat
                         localSlaveData.GetInt("Month Of Previous Login", 0),
                         localSlaveData.GetInt("Day Of Previous Login", 0)
                     ).AddDays(1);
+
                 //Console.WriteLine("Updated Time");
             } else
             {
@@ -81,6 +97,11 @@ namespace HealthAndCat
                     localSlaveDataEdit.PutInt("Year Of Previous Login", DateTime.Now.Year);
                     localSlaveDataEdit.PutInt("Month Of Previous Login", DateTime.Now.Month);
                     localSlaveDataEdit.PutInt("Day Of Previous Login", DateTime.Now.Day);
+
+                    // Also giving the player more cash for the new day.
+                    PlayerCurrency += 100;
+                    localSlaveDataEdit.PutInt("Player Cash", PlayerCurrency);
+
                     localSlaveDataEdit.Commit();
 
                     //Console.WriteLine("New Time");
@@ -96,6 +117,35 @@ namespace HealthAndCat
                 DaysSinceBeginning = localSlaveData.GetInt("Days Since Beginning", 0);
 
                 //Console.WriteLine("New Beginning");
+            }
+
+            _takeCatOut = FindViewById<Button>(Resource.Id.button3);
+            _takeCatOut.Click += TakeCatForAWalk;
+            
+            if (localSlaveData.Contains("TakenCatOut"))
+            {
+                // Depending if the player has taken out his cat out
+                // recently, the button for doing that will be toggled accordingly.
+                DateTime dateOfLastWalk = new DateTime(
+                        localSlaveData.GetInt("Year Of Walk", 0),
+                        localSlaveData.GetInt("Month Of Walk", 0),
+                        localSlaveData.GetInt("Day Of Walk", 0),
+                        localSlaveData.GetInt("Hour Of Walk", 0),
+                        0,
+                        0
+                    ).AddHours(3);
+
+                if (DateTime.Now > dateOfLastWalk)
+                {
+                    _takeCatOut.Enabled = true;
+                    localSlaveDataEdit.PutBoolean("TakeCanOut", false);
+                } else
+                {
+                    _takeCatOut.Enabled = false;
+                }
+            } else
+            {
+                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
             }
 
             TextView DayCounterView = FindViewById<TextView>(Resource.Id.textView3);
@@ -123,21 +173,6 @@ namespace HealthAndCat
                 {
                     localSlaveDataEdit.PutBoolean("CanUseItem", true);
                 }
-            }
-            // If the player has started the game before, then we can extract
-            // his already existing profile data instead of starting a new one
-            // and resetting his progress.
-            if (localSlaveData.Contains("Player Cash"))
-            {
-                localSlaveDataEdit.PutInt("Player Cash", 100);
-                // Pushes the new file edit changes to the source file.
-                localSlaveDataEdit.Commit();
-                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
-            } else
-            {
-                localSlaveDataEdit.PutInt("Player Cash", 100);
-                localSlaveDataEdit.Commit();
-                PlayerCurrency = localSlaveData.GetInt("Player Cash", 0);
             }
 
             CatView = FindViewById<ImageView>(Resource.Id.imageView1);
@@ -198,6 +233,25 @@ namespace HealthAndCat
                 ClockView = FindViewById<TextView>(Resource.Id.textView1);
                 ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             });
+        }
+
+        private void TakeCatForAWalk(object sender, EventArgs e)
+        {
+            _takeCatOut.Enabled = false;
+
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+
+            // Saving the time and date of the cat being taken out
+            // so that we can set a time interval between every
+            // consecutive activity.
+            localSlaveDataEdit.PutInt("Year Of Walk", DateTime.Now.Year);
+            localSlaveDataEdit.PutInt("Month Of Walk", DateTime.Now.Month);
+            localSlaveDataEdit.PutInt("Day Of Walk", DateTime.Now.Day);
+            localSlaveDataEdit.PutInt("Hour Of Walk", DateTime.Now.Hour);
+
+            localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+            localSlaveDataEdit.Commit();
         }
     }
 }
