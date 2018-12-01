@@ -25,6 +25,50 @@ namespace HealthAndCat
         private Button _inventoryButton;
         private Button _takeCatOut;
         private TextView _walkTimer;
+        private TextView _mealTimer;
+        private TextView _toysTimer;
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
+            _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
+            if (localSlaveData.Contains("Year Of Meal"))
+            {
+                _mealTimer.Enabled = true;
+                _mealTimer.Visibility = Android.Views.ViewStates.Visible;
+
+                // The timer handles the text view's content after
+                // every interval of milliseconds.
+                Timer timer = new Timer(new TimerCallback(UpdateClock));
+                // First parameter is when the event starts after
+                // the activity is initialized and the second parameter
+                // is the interval between each code block execution
+                timer.Change(1000, 1000);
+            }
+            else
+            {
+                _mealTimer.Enabled = false;
+                _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+            }
+
+            _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
+            if (localSlaveData.GetBoolean("Played With Toy", false))
+            {
+                _toysTimer.Enabled = true;
+                _toysTimer.Visibility = Android.Views.ViewStates.Visible;
+
+                Timer timer = new Timer(new TimerCallback(UpdateClock));
+                timer.Change(1000, 1000);
+            }
+            else
+            {
+                _toysTimer.Enabled = false;
+                _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+            }
+        }
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,9 +80,48 @@ namespace HealthAndCat
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
 
-            _walkTimer = FindViewById<TextView>(Resource.Id.textView4);
+            if (localSlaveData.Contains("Year Of Play"))
+            {
+                _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
+                if (localSlaveData.GetBoolean("Played With Toy", false))
+                {
+                    _toysTimer.Enabled = true;
+                    _toysTimer.Visibility = Android.Views.ViewStates.Visible;
 
-            if (localSlaveData.GetBoolean("TakenCatOut", false))
+                    Timer timer = new Timer(new TimerCallback(UpdateClock));
+                    timer.Change(1000, 1000);
+                }
+                else
+                {
+                    _toysTimer.Enabled = false;
+                    _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+                }
+            } else
+            {
+                localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
+                localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
+                localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
+                localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Day);
+
+                localSlaveDataEdit.Commit();
+            }
+
+            _walkTimer = FindViewById<TextView>(Resource.Id.textView4);
+            _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
+            if (localSlaveData.Contains("Year Of Meal"))
+            {
+                _mealTimer.Enabled = true;
+                _mealTimer.Visibility = Android.Views.ViewStates.Visible;
+                
+                Timer timer = new Timer(new TimerCallback(UpdateClock));
+                timer.Change(1000, 1000);
+            } else
+            {
+                _mealTimer.Enabled = false;
+                _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+            }
+
+                if (localSlaveData.GetBoolean("TakenCatOut", false))
             {
                 _walkTimer.Enabled = true;
                 _walkTimer.Visibility = Android.Views.ViewStates.Visible;
@@ -141,6 +224,35 @@ namespace HealthAndCat
                 //Console.WriteLine("New Beginning");
             }
 
+            if (localSlaveData.Contains("Played With Toy"))
+            {
+                // Depending if the player has taken out his cat out
+                // recently, the button for doing that will be toggled accordingly.
+                DateTime dateOfLastPlay = new DateTime(
+                        localSlaveData.GetInt("Year Of Play", 0),
+                        localSlaveData.GetInt("Month Of Play", 0),
+                        localSlaveData.GetInt("Day Of Play", 0),
+                        localSlaveData.GetInt("Hour Of Play", 0),
+                        0,
+                        0
+                    ).AddHours(6);
+                
+                if (DateTime.Now > dateOfLastPlay)
+                {
+                    localSlaveDataEdit.PutBoolean("Played With Toy", false);
+                    localSlaveDataEdit.Commit();
+                }
+                else
+                {
+                    localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                    localSlaveDataEdit.Commit();
+                }
+            }
+            else
+            {
+                localSlaveDataEdit.PutBoolean("Played With Toy", false);
+            }
+
             _takeCatOut = FindViewById<Button>(Resource.Id.button3);
             _takeCatOut.Click += TakeCatForAWalk;
             
@@ -204,6 +316,7 @@ namespace HealthAndCat
                 if (DateTime.Now > dateOfLastMeal)
                 {
                     localSlaveDataEdit.PutBoolean("CanUseItem", true);
+                    localSlaveDataEdit.Commit();
                 }
             }
 
@@ -277,7 +390,27 @@ namespace HealthAndCat
                         0
                     ).AddHours(3);
 
+                DateTime dateOfLastMeal = new DateTime(
+                        localSlaveData.GetInt("Year Of Meal", 0),
+                        localSlaveData.GetInt("Month Of Meal", 0),
+                        localSlaveData.GetInt("Day Of Meal", 0),
+                        localSlaveData.GetInt("Hour Of Meal", 0),
+                        0,
+                        0
+                    ).AddHours(6);
+
+                DateTime dateOfLastPlay = new DateTime(
+                        localSlaveData.GetInt("Year Of Play", 0),
+                        localSlaveData.GetInt("Month Of Play", 0),
+                        localSlaveData.GetInt("Day Of Play", 0),
+                        localSlaveData.GetInt("Hour Of Play", 0),
+                        0,
+                        0
+                    ).AddHours(6);
+
                 TimeSpan timeUntilNextWalk = dateOfLastWalk - DateTime.Now;
+                TimeSpan timeUntilNextMeal = dateOfLastMeal - DateTime.Now;
+                TimeSpan timeUntilNextPlay = dateOfLastPlay - DateTime.Now;
 
                 if (timeUntilNextWalk.Minutes <= 1)
                 {
@@ -285,7 +418,21 @@ namespace HealthAndCat
                     _walkTimer.Visibility = Android.Views.ViewStates.Gone;
                 }
 
+                if (timeUntilNextMeal.Minutes <= 1)
+                {
+                    _mealTimer.Enabled = false;
+                    _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+                }
+
+                if (timeUntilNextPlay.Minutes <= 1)
+                {
+                    _toysTimer.Enabled = false;
+                    _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+                }
+
                 _walkTimer.Text = "Returns after: " + timeUntilNextWalk.Hours + "h " + timeUntilNextWalk.Minutes + "m";
+                _mealTimer.Text = "Can eat after: " + timeUntilNextMeal.Hours + "h " + timeUntilNextMeal.Minutes + "m";
+                _toysTimer.Text = "Can play after: " + timeUntilNextPlay.Hours + "h " + timeUntilNextPlay.Minutes + "m";
                 //ClockView = FindViewById<TextView>(Resource.Id.textView1);
                 //ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             });

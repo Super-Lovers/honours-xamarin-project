@@ -217,6 +217,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= CastleToyCost;
                             CastleToys += 1;
+
+                            CommitIntToStorage("Castle Toys", CastleToys);
                         }
                         break;
                     case "Ball Toy":
@@ -224,6 +226,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= BallToyCost;
                             BallToys += 1;
+
+                            CommitIntToStorage("Ball Toys", BallToys);
                         }
                         break;
                     case "Mouse Toy":
@@ -231,6 +235,8 @@ namespace HealthAndCat.Resources.layout
                         {
                             MainActivity.PlayerCurrency -= MouseToyCost;
                             MouseToys += 1;
+
+                            CommitIntToStorage("Mouse Toys", MouseToys);
                         }
                         break;
                     // ******

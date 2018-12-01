@@ -184,23 +184,39 @@ namespace HealthAndCat
             {
                 button.Click += UseItem;
             }
-            
+
+            if (localSlaveData.GetBoolean("Played With Toy", false))
+            {
+                foreach (var button in _useItemButtons)
+                {
+                    if (button.Tag.ToString() == "Mouse Toy" ||
+                        button.Tag.ToString() == "Castle Toy" ||
+                        button.Tag.ToString() == "Ball Toy")
+                        button.Enabled = false;
+                }
+            }
+
             if (localSlaveData.GetBoolean("CanUseItem", false) == false)
             {
                 foreach (var button in _useItemButtons)
                 {
-                    button.Enabled = false;
+                    if (button.Tag.ToString() != "Mouse Toy" &&
+                        button.Tag.ToString() != "Castle Toy" &&
+                        button.Tag.ToString() != "Ball Toy")
+                        button.Enabled = false;
                 }
             }
             else
             {
                 foreach (var button in _useItemButtons)
                 {
-                    button.Enabled = true;
+                    if (button.Tag.ToString() != "Mouse Toy" &&
+                        button.Tag.ToString() != "Castle Toy" &&
+                        button.Tag.ToString() != "Ball Toy")
+                        button.Enabled = true;
                 }
             }
             #endregion
-
 
             // Creating a new file with custom name and access level
             localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
@@ -238,9 +254,10 @@ namespace HealthAndCat
         {
             Button buttonClicked = (Button)sender;
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
 
-            if (localSlaveData.GetBoolean("CanUseItem", false) == true)
-            {
+            //if (localSlaveData.GetBoolean("CanUseItem", false) == true)
+            //{
                 switch (buttonClicked.Tag.ToString())
                 {
                     // ******
@@ -250,27 +267,51 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.CastleToys > 0)
                         {
                             HealthAndCat.Resources.layout.Store.CastleToys--;
+                            CommitIntToStorage("Castle Toys", HealthAndCat.Resources.layout.Store.CastleToys);
+
                             CastleToy.Text = localSlaveData.GetInt("Castle Toys", 0).ToString();
 
-                            CommitIntToStorage("Castle Toys", HealthAndCat.Resources.layout.Store.CastleToys);
+                            localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
+                            
+                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Ball Toy":
                         if (HealthAndCat.Resources.layout.Store.BallToys > 0)
                         {
                             HealthAndCat.Resources.layout.Store.BallToys--;
+                            CommitIntToStorage("Ball Toys", HealthAndCat.Resources.layout.Store.BallToys);
+
                             BallToy.Text = HealthAndCat.Resources.layout.Store.BallToys.ToString();
 
-                            CommitIntToStorage("Ball Toys", HealthAndCat.Resources.layout.Store.BallToys);
+                            localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
+
+                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Mouse Toy":
                         if (HealthAndCat.Resources.layout.Store.MouseToys > 0)
                         {
                             HealthAndCat.Resources.layout.Store.MouseToys--;
+                            CommitIntToStorage("Mouse Toys", HealthAndCat.Resources.layout.Store.MouseToys);
+
                             MouseToy.Text = HealthAndCat.Resources.layout.Store.MouseToys.ToString();
 
-                            CommitIntToStorage("Mouse Toys", HealthAndCat.Resources.layout.Store.MouseToys);
+                            localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
+
+                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     // ******
@@ -283,6 +324,13 @@ namespace HealthAndCat
                             OatsLabel.Text = HealthAndCat.Resources.layout.Store.Oats.ToString();
 
                             CommitIntToStorage("Oats Food", HealthAndCat.Resources.layout.Store.Oats);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Cheese":
@@ -292,6 +340,13 @@ namespace HealthAndCat
                             CheeseLabel.Text = HealthAndCat.Resources.layout.Store.Cheese.ToString();
 
                             CommitIntToStorage("Cheese Food", HealthAndCat.Resources.layout.Store.Cheese);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Egg":
@@ -301,6 +356,13 @@ namespace HealthAndCat
                             EggsLabel.Text = HealthAndCat.Resources.layout.Store.Eggs.ToString();
 
                             CommitIntToStorage("Egg Food", HealthAndCat.Resources.layout.Store.Eggs);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Chicken":
@@ -310,6 +372,13 @@ namespace HealthAndCat
                             ChickenLabel.Text = HealthAndCat.Resources.layout.Store.Chicken.ToString();
 
                             CommitIntToStorage("Chicken Food", HealthAndCat.Resources.layout.Store.Chicken);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Fish":
@@ -319,6 +388,13 @@ namespace HealthAndCat
                             FishLabel.Text = HealthAndCat.Resources.layout.Store.Fish.ToString();
 
                             CommitIntToStorage("Fish Food", HealthAndCat.Resources.layout.Store.Fish);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                     case "Turkey":
@@ -328,22 +404,40 @@ namespace HealthAndCat
                             TurkeyLabel.Text = HealthAndCat.Resources.layout.Store.Turkey.ToString();
 
                             CommitIntToStorage("Turkey Food", HealthAndCat.Resources.layout.Store.Turkey);
+
+                            localSlaveDataEdit.PutBoolean("CanUseItem", false);
+                            localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
+                            localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
+                            localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
+                            localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
+                            localSlaveDataEdit.Commit();
                         }
                         break;
                 }
-                var localSlaveDataEdit = localSlaveData.Edit();
-                localSlaveDataEdit.PutBoolean("CanUseItem", false);
-                localSlaveDataEdit.PutInt("Year Of Meal", DateTime.Now.Year);
-                localSlaveDataEdit.PutInt("Month Of Meal", DateTime.Now.Month);
-                localSlaveDataEdit.PutInt("Day Of Meal", DateTime.Now.Day);
-                localSlaveDataEdit.PutInt("Hour Of Meal", DateTime.Now.Hour);
-                localSlaveDataEdit.Commit();
 
-                foreach (var button in _useItemButtons)
+                if (localSlaveData.GetBoolean("Played With Toy", false))
                 {
-                    button.Enabled = false;
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Mouse Toy" ||
+                            button.Tag.ToString() == "Castle Toy" ||
+                            button.Tag.ToString() == "Ball Toy")
+                            button.Enabled = false;
+                    }
                 }
-            }
+
+
+                if (localSlaveData.GetBoolean("CanUseItem", false) == false)
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() != "Mouse Toy" &&
+                            button.Tag.ToString() != "Castle Toy" &&
+                            button.Tag.ToString() != "Ball Toy")
+                            button.Enabled = false;
+                    }
+                }
+            //}
         }
 
         public void CommitIntToStorage(string key, int value)

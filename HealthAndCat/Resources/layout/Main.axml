@@ -89,14 +89,28 @@
                 p1:layout_width="match_parent"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/button2" />
+            <TextView
+                p1:text="Timer for eating"
+                p1:textAppearance="?android:attr/textAppearanceSmall"
+                p1:layout_width="wrap_content"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView5"
+                p1:layout_gravity="center" />
         </LinearLayout>
     </LinearLayout>
+    <TextView
+        p1:text="Timer for playing"
+        p1:textAppearance="?android:attr/textAppearanceSmall"
+        p1:layout_width="wrap_content"
+        p1:layout_height="wrap_content"
+        p1:id="@+id/textView6"
+        p1:layout_gravity="center" />
     <ImageView
         p1:src="@drawable/screenshot_83"
         p1:layout_width="match_parent"
         p1:layout_height="match_parent"
         p1:id="@+id/imageView1"
-        p1:scaleX="0.7"
-        p1:scaleY="0.7"
+        p1:scaleX="0.6"
+        p1:scaleY="0.6"
         p1:layout_marginBottom="0.0dp" />
 </LinearLayout>
