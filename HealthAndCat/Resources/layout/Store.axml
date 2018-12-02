@@ -62,11 +62,13 @@
                     android:layout_row="0"
                     android:layout_column="0">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/grain"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -101,11 +103,13 @@
                     android:layout_row="0"
                     android:layout_column="2">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/cheese"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -142,11 +146,13 @@
                     android:layout_row="0"
                     android:layout_column="4">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/egg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -185,11 +191,13 @@
                     android:layout_column="0"
                     android:layout_columnWeight="1">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/chickenleg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -225,11 +233,13 @@
                     android:layout_row="0"
                     android:layout_column="2">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/cannedfood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -265,11 +275,13 @@
                     android:layout_column="4"
                     android:id="@+id/linearLayout2">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/roastchicken"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -315,11 +327,13 @@
                     android:layout_row="0"
                     android:layout_column="0">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/building"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -355,11 +369,13 @@
                     android:layout_row="0"
                     android:layout_column="2">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/cattoy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
@@ -395,11 +411,13 @@
                     android:layout_row="0"
                     android:layout_column="4">
                     <ImageView
-                        android:src="@android:drawable/ic_menu_gallery"
+                        android:src="@drawable/mouse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
-                        android:layout_gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleX="0.6"
+                        android:scaleY="0.6" />
                     <TextView
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"

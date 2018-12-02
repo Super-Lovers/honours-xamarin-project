@@ -80,7 +80,7 @@ namespace HealthAndCat.Resources.layout
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
 
             _currentCash = FindViewById<TextView>(Resource.Id.textView2);
-            _currentCash.Text = "Cash: " + localSlaveData.GetInt("Player Cash", 0);
+            _currentCash.Text = "Cash: $" + localSlaveData.GetInt("Player Cash", 0);
 
             toggleFoodAndToys = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
             toggleFoodAndToys.Click += ToggleFoodAndToys;
@@ -396,7 +396,7 @@ namespace HealthAndCat.Resources.layout
             var localSlaveDataEdit = localSlaveData.Edit();
             localSlaveDataEdit.PutInt("Player Cash", MainActivity.PlayerCurrency);
             localSlaveDataEdit.Commit();
-            _currentCash.Text = "Cash: " + MainActivity.PlayerCurrency.ToString();
+            _currentCash.Text = "Cash: $" + MainActivity.PlayerCurrency.ToString();
         }
 
         public void CommitIntToStorage(string key, int value)

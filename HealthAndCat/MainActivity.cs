@@ -420,7 +420,7 @@ namespace HealthAndCat
             CatView.Click += OnClickedCat;
 
             _currencyView = FindViewById<TextView>(Resource.Id.textView2);
-            _currencyView.Text = "Cash: " + PlayerCurrency;
+            _currencyView.Text = "Cash: $" + PlayerCurrency;
 
             ClockView = FindViewById<TextView>(Resource.Id.textView1);
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period

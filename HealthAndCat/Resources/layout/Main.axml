@@ -11,14 +11,25 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/linearLayout2">
-        <TextView
-            p1:text="Day Counter"
-            p1:textAppearance="?android:attr/textAppearanceMedium"
+        <GridLayout
+            p1:minWidth="25px"
+            p1:minHeight="25px"
             p1:layout_width="wrap_content"
             p1:layout_height="wrap_content"
-            p1:id="@+id/textView3"
-            p1:layout_gravity="center"
-            p1:paddingTop="5dp" />
+            p1:id="@+id/gridLayout2"
+            p1:layout_gravity="center">
+            <ImageView
+                p1:src="@drawable/calendar"
+                p1:id="@+id/imageView3"
+                p1:scaleX="0.6"
+                p1:scaleY="0.6" />
+            <TextView
+                p1:text="Day Counter"
+                p1:textAppearance="?android:attr/textAppearanceMedium"
+                p1:id="@+id/textView3"
+                p1:paddingTop="5dp"
+                p1:layout_gravity="center_vertical" />
+        </GridLayout>
         <LinearLayout
             p1:orientation="vertical"
             p1:minWidth="25px"
@@ -37,7 +48,7 @@
                 p1:layout_height="match_parent"
                 p1:id="@+id/gridLayout1"
                 p1:rowCount="1"
-                p1:columnCount="4"
+                p1:columnCount="5"
                 p1:layout_gravity="center"
                 p1:padding="5dp">
                 <TextView
@@ -59,7 +70,7 @@
                     p1:textAppearance="?android:attr/textAppearanceMedium"
                     p1:id="@+id/textView2"
                     p1:layout_row="0"
-                    p1:layout_column="3"
+                    p1:layout_column="4"
                     p1:textAlignment="center"
                     p1:layout_gravity="center_vertical" />
                 <ImageView
@@ -68,6 +79,12 @@
                     p1:layout_column="0"
                     p1:layout_gravity="center"
                     p1:layout_width="match_parent" />
+                <ImageView
+                    p1:src="@drawable/piggybank"
+                    p1:id="@+id/imageView4"
+                    p1:layout_column="3"
+                    p1:scaleX="1.2"
+                    p1:scaleY="1.2" />
             </GridLayout>
         </LinearLayout>
         <LinearLayout
@@ -116,7 +133,7 @@
         p1:id="@+id/textView6"
         p1:layout_gravity="center" />
     <ImageView
-        p1:src="@drawable/screenshot_83"
+        p1:src="@drawable/screenshot83"
         p1:layout_width="match_parent"
         p1:layout_height="match_parent"
         p1:id="@+id/imageView1"

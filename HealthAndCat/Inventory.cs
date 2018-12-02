@@ -137,7 +137,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Oats = 0;
             }
             OatsLabel = FindViewById<TextView>(Resource.Id.Oats);
-            OatsLabel.Text = HealthAndCat.Resources.layout.Store.Oats.ToString();
+            OatsLabel.Text = "Oats: " + HealthAndCat.Resources.layout.Store.Oats.ToString();
 
             if (localSlaveData.Contains("Cheese Food"))
             {
@@ -148,7 +148,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Cheese = 0;
             }
             CheeseLabel = FindViewById<TextView>(Resource.Id.Cheese);
-            CheeseLabel.Text = HealthAndCat.Resources.layout.Store.Cheese.ToString();
+            CheeseLabel.Text = "Cheese: " + HealthAndCat.Resources.layout.Store.Cheese.ToString();
 
             if (localSlaveData.Contains("Egg Food"))
             {
@@ -159,7 +159,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Eggs = 0;
             }
             EggsLabel = FindViewById<TextView>(Resource.Id.Eggs);
-            EggsLabel.Text = HealthAndCat.Resources.layout.Store.Eggs.ToString();
+            EggsLabel.Text = "Eggs: " + HealthAndCat.Resources.layout.Store.Eggs.ToString();
 
             if (localSlaveData.Contains("Chicken Food"))
             {
@@ -170,7 +170,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Chicken = 0;
             }
             ChickenLabel = FindViewById<TextView>(Resource.Id.Chicken);
-            ChickenLabel.Text = HealthAndCat.Resources.layout.Store.Chicken.ToString();
+            ChickenLabel.Text = "Chicken: " + HealthAndCat.Resources.layout.Store.Chicken.ToString();
 
             if (localSlaveData.Contains("Fish Food"))
             {
@@ -181,7 +181,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Fish = 0;
             }
             FishLabel = FindViewById<TextView>(Resource.Id.Fish);
-            FishLabel.Text = HealthAndCat.Resources.layout.Store.Fish.ToString();
+            FishLabel.Text = "Fish: " + HealthAndCat.Resources.layout.Store.Fish.ToString();
 
             if (localSlaveData.Contains("Turkey Food"))
             {
@@ -192,7 +192,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.Turkey = 0;
             }
             TurkeyLabel = FindViewById<TextView>(Resource.Id.Turkey);
-            TurkeyLabel.Text = HealthAndCat.Resources.layout.Store.Turkey.ToString();
+            TurkeyLabel.Text = "Turkey: " + HealthAndCat.Resources.layout.Store.Turkey.ToString();
             #endregion
 
             #region Toy views in store - Page 2
@@ -205,7 +205,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.CastleToys = 0;
             }
             CastleToy = FindViewById<TextView>(Resource.Id.CastleToy);
-            CastleToy.Text = HealthAndCat.Resources.layout.Store.CastleToys.ToString();
+            CastleToy.Text = "Castles: " + HealthAndCat.Resources.layout.Store.CastleToys.ToString();
 
             if (localSlaveData.Contains("Ball Toys"))
             {
@@ -216,7 +216,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.BallToys = 0;
             }
             BallToy = FindViewById<TextView>(Resource.Id.BallToy);
-            BallToy.Text = HealthAndCat.Resources.layout.Store.BallToys.ToString();
+            BallToy.Text = "Balls: " + HealthAndCat.Resources.layout.Store.BallToys.ToString();
 
             if (localSlaveData.Contains("Mouse Toys"))
             {
@@ -227,7 +227,7 @@ namespace HealthAndCat
                 HealthAndCat.Resources.layout.Store.MouseToys = 0;
             }
             MouseToy = FindViewById<TextView>(Resource.Id.MouseToy);
-            MouseToy.Text = HealthAndCat.Resources.layout.Store.MouseToys.ToString();
+            MouseToy.Text = "Mice: " + HealthAndCat.Resources.layout.Store.MouseToys.ToString();
             #endregion
 
             #region Buttons for buying/selling Food/Toys
@@ -387,7 +387,7 @@ namespace HealthAndCat
                             HealthAndCat.Resources.layout.Store.CastleToys--;
                             CommitIntToStorage("Castle Toys", HealthAndCat.Resources.layout.Store.CastleToys);
 
-                            CastleToy.Text = localSlaveData.GetInt("Castle Toys", 0).ToString();
+                            CastleToy.Text = "Castles: " + localSlaveData.GetInt("Castle Toys", 0).ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
@@ -404,7 +404,7 @@ namespace HealthAndCat
                             HealthAndCat.Resources.layout.Store.BallToys--;
                             CommitIntToStorage("Ball Toys", HealthAndCat.Resources.layout.Store.BallToys);
 
-                            BallToy.Text = HealthAndCat.Resources.layout.Store.BallToys.ToString();
+                            BallToy.Text = "Balls: " + HealthAndCat.Resources.layout.Store.BallToys.ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
@@ -421,7 +421,7 @@ namespace HealthAndCat
                             HealthAndCat.Resources.layout.Store.MouseToys--;
                             CommitIntToStorage("Mouse Toys", HealthAndCat.Resources.layout.Store.MouseToys);
 
-                            MouseToy.Text = HealthAndCat.Resources.layout.Store.MouseToys.ToString();
+                            MouseToy.Text = "Mice: " + HealthAndCat.Resources.layout.Store.MouseToys.ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
@@ -439,7 +439,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Oats > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Oats--;
-                            OatsLabel.Text = HealthAndCat.Resources.layout.Store.Oats.ToString();
+                            OatsLabel.Text = "Oats: " + HealthAndCat.Resources.layout.Store.Oats.ToString();
 
                             CommitIntToStorage("Oats Food", HealthAndCat.Resources.layout.Store.Oats);
 
@@ -455,7 +455,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Cheese > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Cheese--;
-                            CheeseLabel.Text = HealthAndCat.Resources.layout.Store.Cheese.ToString();
+                            CheeseLabel.Text = "Chees: " + HealthAndCat.Resources.layout.Store.Cheese.ToString();
 
                             CommitIntToStorage("Cheese Food", HealthAndCat.Resources.layout.Store.Cheese);
 
@@ -471,7 +471,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Eggs > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Eggs--;
-                            EggsLabel.Text = HealthAndCat.Resources.layout.Store.Eggs.ToString();
+                            EggsLabel.Text = "Eggs: " + HealthAndCat.Resources.layout.Store.Eggs.ToString();
 
                             CommitIntToStorage("Egg Food", HealthAndCat.Resources.layout.Store.Eggs);
 
@@ -487,7 +487,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Chicken > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Chicken--;
-                            ChickenLabel.Text = HealthAndCat.Resources.layout.Store.Chicken.ToString();
+                            ChickenLabel.Text = "Chicken: " + HealthAndCat.Resources.layout.Store.Chicken.ToString();
 
                             CommitIntToStorage("Chicken Food", HealthAndCat.Resources.layout.Store.Chicken);
 
@@ -503,7 +503,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Fish > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Fish--;
-                            FishLabel.Text = HealthAndCat.Resources.layout.Store.Fish.ToString();
+                            FishLabel.Text = "Fish: " + HealthAndCat.Resources.layout.Store.Fish.ToString();
 
                             CommitIntToStorage("Fish Food", HealthAndCat.Resources.layout.Store.Fish);
 
@@ -519,7 +519,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Turkey > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Turkey--;
-                            TurkeyLabel.Text = HealthAndCat.Resources.layout.Store.Turkey.ToString();
+                            TurkeyLabel.Text = "Turkey: " + HealthAndCat.Resources.layout.Store.Turkey.ToString();
 
                             CommitIntToStorage("Turkey Food", HealthAndCat.Resources.layout.Store.Turkey);
 
