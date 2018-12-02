@@ -37,12 +37,91 @@ namespace HealthAndCat
 
         private List<Button> _useItemButtons = new List<Button>();
 
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+            var localSlaveDataEdit = localSlaveData.Edit();
+
+            DateTime dateOfLastWalk = new DateTime(
+                         localSlaveData.GetInt("Year Of Walk", 0),
+                         localSlaveData.GetInt("Month Of Walk", 0),
+                         localSlaveData.GetInt("Day Of Walk", 0),
+                         localSlaveData.GetInt("Hour Of Walk", 0),
+                         0,
+                         0
+                     ).AddHours(3);
+            
+            if (DateTime.Now < dateOfLastWalk)
+            {
+                localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+            }
+            else
+            {
+                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
+            }
+            localSlaveDataEdit.Commit();
+
+            if (localSlaveData.GetBoolean("TakenCatOut", false))
+            {
+                foreach (var button in _useItemButtons)
+                {
+                    button.Enabled = false;
+                }
+            } else
+            {
+                if (localSlaveData.GetBoolean("Played With Toy", false))
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Mouse Toy" ||
+                            button.Tag.ToString() == "Castle Toy" ||
+                            button.Tag.ToString() == "Ball Toy")
+                            button.Enabled = false;
+                    }
+                }
+                else
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Mouse Toy" ||
+                            button.Tag.ToString() == "Castle Toy" ||
+                            button.Tag.ToString() == "Ball Toy")
+                            button.Enabled = true;
+                    }
+                }
+
+                if (localSlaveData.GetBoolean("CanUseItem", false) == false)
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() != "Mouse Toy" &&
+                            button.Tag.ToString() != "Castle Toy" &&
+                            button.Tag.ToString() != "Ball Toy")
+                            button.Enabled = false;
+                    }
+                }
+                else
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() != "Mouse Toy" &&
+                            button.Tag.ToString() != "Castle Toy" &&
+                            button.Tag.ToString() != "Ball Toy")
+                            button.Enabled = true;
+                    }
+                }
+            }
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.Inventory);
 
+            // Creating a new file with custom name and access level
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
 
             toggleFoodAndToys = FindViewById<ToggleButton>(Resource.Id.toggleButton1);
@@ -185,43 +264,82 @@ namespace HealthAndCat
                 button.Click += UseItem;
             }
 
-            if (localSlaveData.GetBoolean("Played With Toy", false))
+            // Editing that new file with the new variable that uses editing mode.
+            var localSlaveDataEdit = localSlaveData.Edit();
+
+            DateTime dateOfLastWalk = new DateTime(
+                         localSlaveData.GetInt("Year Of Walk", 0),
+                         localSlaveData.GetInt("Month Of Walk", 0),
+                         localSlaveData.GetInt("Day Of Walk", 0),
+                         localSlaveData.GetInt("Hour Of Walk", 0),
+                         0,
+                         0
+                     ).AddHours(3);
+            
+            if (DateTime.Now < dateOfLastWalk)
             {
-                foreach (var button in _useItemButtons)
-                {
-                    if (button.Tag.ToString() == "Mouse Toy" ||
-                        button.Tag.ToString() == "Castle Toy" ||
-                        button.Tag.ToString() == "Ball Toy")
-                        button.Enabled = false;
-                }
+                localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+            } else
+            {
+                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
             }
 
-            if (localSlaveData.GetBoolean("CanUseItem", false) == false)
+            localSlaveDataEdit.Commit();
+
+            if (localSlaveData.GetBoolean("TakenCatOut", false))
             {
                 foreach (var button in _useItemButtons)
                 {
-                    if (button.Tag.ToString() != "Mouse Toy" &&
-                        button.Tag.ToString() != "Castle Toy" &&
-                        button.Tag.ToString() != "Ball Toy")
-                        button.Enabled = false;
+                    button.Enabled = false;
                 }
             }
             else
             {
-                foreach (var button in _useItemButtons)
+                if (localSlaveData.GetBoolean("Played With Toy", false))
                 {
-                    if (button.Tag.ToString() != "Mouse Toy" &&
-                        button.Tag.ToString() != "Castle Toy" &&
-                        button.Tag.ToString() != "Ball Toy")
-                        button.Enabled = true;
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Mouse Toy" ||
+                            button.Tag.ToString() == "Castle Toy" ||
+                            button.Tag.ToString() == "Ball Toy")
+                            button.Enabled = false;
+                    }
+                }
+                else
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Mouse Toy" ||
+                            button.Tag.ToString() == "Castle Toy" ||
+                            button.Tag.ToString() == "Ball Toy")
+                            button.Enabled = true;
+                    }
+                }
+
+                if (localSlaveData.GetBoolean("CanUseItem", false) == false)
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() != "Mouse Toy" &&
+                            button.Tag.ToString() != "Castle Toy" &&
+                            button.Tag.ToString() != "Ball Toy")
+                            button.Enabled = false;
+                    }
+                }
+                else
+                {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() != "Mouse Toy" &&
+                            button.Tag.ToString() != "Castle Toy" &&
+                            button.Tag.ToString() != "Ball Toy")
+                            button.Enabled = true;
+                    }
                 }
             }
             #endregion
 
-            // Creating a new file with custom name and access level
             localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
-            // and then editing that file with the new variable that uses editing mode.
-            var localSlaveDataEdit = localSlaveData.Edit();
             if (localSlaveData.Contains("CanUseItem") == false)
             {
                 localSlaveDataEdit.PutBoolean("CanUseItem", true);

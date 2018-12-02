@@ -68,6 +68,45 @@ namespace HealthAndCat
                 _toysTimer.Enabled = false;
                 _toysTimer.Visibility = Android.Views.ViewStates.Gone;
             }
+
+            if (localSlaveData.Contains("TakenCatOut"))
+            {
+                // Depending if the player has taken out his cat out
+                // recently, the button for doing that will be toggled accordingly.
+                DateTime dateOfLastWalk = new DateTime(
+                        localSlaveData.GetInt("Year Of Walk", 0),
+                        localSlaveData.GetInt("Month Of Walk", 0),
+                        localSlaveData.GetInt("Day Of Walk", 0),
+                        localSlaveData.GetInt("Hour Of Walk", 0),
+                        0,
+                        0
+                    ).AddHours(3);
+
+                //Console.WriteLine("\n WALK AT " + dateOfLastWalk + "\n");
+                //Console.WriteLine("\n" + dateOfLastWalk.Hour + "\n");
+                //Console.WriteLine("\n" + DateTime.Now.Hour + "\n");
+
+                // We want the player to only take his cat out in
+                // daylight because it might be dangerous in the dark.
+                if (DateTime.Now > dateOfLastWalk &&
+                    DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
+                {
+                    _takeCatOut.Enabled = true;
+                    _takeCatOut.Text = "Take cat out";
+                }
+                else
+                {
+                    if (DateTime.Now < dateOfLastWalk)
+                    {
+                        _takeCatOut.Text = "Cant go out at this time!";
+                    }
+                    else
+                    {
+                        _takeCatOut.Text = "It's too late to go out!";
+                    }
+                    _takeCatOut.Enabled = false;
+                }
+            }
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -276,16 +315,23 @@ namespace HealthAndCat
                 // We want the player to only take his cat out in
                 // daylight because it might be dangerous in the dark.
                 if (DateTime.Now > dateOfLastWalk &&
-                    DateTime.Now.Hour > 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
+                    DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
                 {
                     _takeCatOut.Enabled = true;
-                    localSlaveDataEdit.PutBoolean("TakeCanOut", false);
+                    _takeCatOut.Text = "Take cat out";
+                    localSlaveDataEdit.PutBoolean("TakenCatOut", false);
                     localSlaveDataEdit.Commit();
                 } else
                 {
-                    _takeCatOut.Text = "It's too dark to go out!";
+                    if (DateTime.Now < dateOfLastWalk)
+                    {
+                        _takeCatOut.Text = "Cant go out at this time!";
+                        localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+                    } else
+                    {
+                        _takeCatOut.Text = "It's too late to go out!";
+                    }
                     _takeCatOut.Enabled = false;
-                    localSlaveDataEdit.PutBoolean("TakeCanOut", true);
                     localSlaveDataEdit.Commit();
                 }
             } else
@@ -452,8 +498,6 @@ namespace HealthAndCat
             // is the interval between each code block execution
             timer.Change(1000, 1000);
 
-            _takeCatOut.Enabled = false;
-
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
 
@@ -467,6 +511,8 @@ namespace HealthAndCat
 
             localSlaveDataEdit.PutBoolean("TakenCatOut", true);
             localSlaveDataEdit.Commit();
+
+            _takeCatOut.Enabled = false;
         }
     }
 }
