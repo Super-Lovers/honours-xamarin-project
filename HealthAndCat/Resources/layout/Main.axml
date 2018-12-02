@@ -37,26 +37,37 @@
                 p1:layout_height="match_parent"
                 p1:id="@+id/gridLayout1"
                 p1:rowCount="1"
-                p1:columnCount="3"
+                p1:columnCount="4"
                 p1:layout_gravity="center"
                 p1:padding="5dp">
-                <TextView
-                    p1:text="Cash"
-                    p1:textAppearance="?android:attr/textAppearanceMedium"
-                    p1:id="@+id/textView2"
-                    p1:layout_row="0"
-                    p1:layout_column="2" />
-                <Space
-                    p1:id="@+id/space1"
-                    p1:layout_row="0"
-                    p1:layout_column="1"
-                    p1:layout_width="50dp" />
                 <TextView
                     p1:text="Time"
                     p1:textAppearance="?android:attr/textAppearanceMedium"
                     p1:id="@+id/textView1"
                     p1:layout_row="0"
-                    p1:layout_column="0" />
+                    p1:layout_column="1"
+                    p1:layout_gravity="center_vertical"
+                    p1:layout_width="match_parent"
+                    p1:textAlignment="center" />
+                <Space
+                    p1:id="@+id/space1"
+                    p1:layout_row="0"
+                    p1:layout_column="2"
+                    p1:layout_width="50dp" />
+                <TextView
+                    p1:text="Cash"
+                    p1:textAppearance="?android:attr/textAppearanceMedium"
+                    p1:id="@+id/textView2"
+                    p1:layout_row="0"
+                    p1:layout_column="3"
+                    p1:textAlignment="center"
+                    p1:layout_gravity="center_vertical" />
+                <ImageView
+                    p1:src="@android:drawable/ic_menu_gallery"
+                    p1:id="@+id/imageView2"
+                    p1:layout_column="0"
+                    p1:layout_gravity="center"
+                    p1:layout_width="match_parent" />
             </GridLayout>
         </LinearLayout>
         <LinearLayout
@@ -69,14 +80,13 @@
                 p1:layout_width="match_parent"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/button3" />
-            <TextView
+            <TextView xmlns:tools="http://schemas.android.com/tools"
                 p1:textAppearance="?android:attr/textAppearanceSmall"
                 p1:layout_width="wrap_content"
                 p1:layout_height="wrap_content"
                 p1:id="@+id/textView4"
                 p1:layout_gravity="center"
                 p1:text="Timer for walk"
-                xmlns:tools="http://schemas.android.com/tools"
                 tools:visibility="visible" />
             <Button
                 p1:text="Store"

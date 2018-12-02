@@ -14,6 +14,7 @@ namespace HealthAndCat
         // The clock for the player to see the
         // time of day so he can schedule and play differently.
         public static TextView ClockView;
+        private ImageView _timeIcon;
         private TextView _currencyView;
         public static int PlayerCurrency = 100;
         public static int DaysSinceBeginning;
@@ -33,6 +34,31 @@ namespace HealthAndCat
             base.OnResume();
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
+            if (_timeIcon == null)
+            {
+                _timeIcon = FindViewById<ImageView>(Resource.Id.imageView2);
+            }
+
+            if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sunny);
+            }
+            else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sunny);
+            }
+            else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sun);
+            }
+            else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.moon);
+            } else
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.moon);
+            }
 
             _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
             if (localSlaveData.Contains("Year Of Meal"))
@@ -118,6 +144,29 @@ namespace HealthAndCat
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
+            
+            _timeIcon = FindViewById<ImageView>(Resource.Id.imageView2);
+            
+            if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sunny);
+            }
+            else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sunny);
+            }
+            else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.sun);
+            }
+            else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.moon);
+            }
+            else
+            {
+                _timeIcon.SetImageResource(Resource.Drawable.moon);
+            }
 
             if (localSlaveData.Contains("Year Of Play"))
             {
