@@ -45,16 +45,16 @@ namespace HealthAndCat
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int building = 2130837504;
+			public const int bowling = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int calendar = 2130837505;
+			public const int boy = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int cannedfood = 2130837506;
+			public const int calendar = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int cattoy = 2130837507;
+			public const int cannedfood = 2130837507;
 			
 			// aapt resource value: 0x7f020004
 			public const int cheese = 2130837508;
@@ -66,13 +66,13 @@ namespace HealthAndCat
 			public const int egg = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int grain = 2130837511;
+			public const int golf = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int moon = 2130837512;
+			public const int grain = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int mouse = 2130837513;
+			public const int moon = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
 			public const int piggybank = 2130837514;
@@ -89,6 +89,9 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f02000e
 			public const int sunny = 2130837518;
 			
+			// aapt resource value: 0x7f02000f
+			public const int videocamera = 2130837519;
+			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -102,8 +105,11 @@ namespace HealthAndCat
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f05001d
-			public const int BallToy = 2131034141;
+			// aapt resource value: 0x7f05001b
+			public const int Bowling = 2131034139;
+			
+			// aapt resource value: 0x7f050037
+			public const int BowlingText = 2131034167;
 			
 			// aapt resource value: 0x7f05002b
 			public const int Buy1 = 2131034155;
@@ -123,17 +129,14 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050035
 			public const int Buy6 = 2131034165;
 			
-			// aapt resource value: 0x7f050037
-			public const int Buy7 = 2131034167;
-			
-			// aapt resource value: 0x7f050039
-			public const int Buy8 = 2131034169;
+			// aapt resource value: 0x7f050038
+			public const int Buy7 = 2131034168;
 			
 			// aapt resource value: 0x7f05003b
-			public const int Buy9 = 2131034171;
+			public const int Buy8 = 2131034171;
 			
-			// aapt resource value: 0x7f05001b
-			public const int CastleToy = 2131034139;
+			// aapt resource value: 0x7f05003e
+			public const int Buy9 = 2131034174;
 			
 			// aapt resource value: 0x7f05000c
 			public const int Cheese = 2131034124;
@@ -151,7 +154,16 @@ namespace HealthAndCat
 			public const int Foods = 2131034117;
 			
 			// aapt resource value: 0x7f05001f
-			public const int MouseToy = 2131034143;
+			public const int Golf = 2131034143;
+			
+			// aapt resource value: 0x7f05003d
+			public const int GolfText = 2131034173;
+			
+			// aapt resource value: 0x7f05003a
+			public const int MovieText = 2131034170;
+			
+			// aapt resource value: 0x7f05001d
+			public const int Movies = 2131034141;
 			
 			// aapt resource value: 0x7f050008
 			public const int Oats = 2131034120;
@@ -174,14 +186,14 @@ namespace HealthAndCat
 			// aapt resource value: 0x7f050036
 			public const int Sell6 = 2131034166;
 			
-			// aapt resource value: 0x7f050038
-			public const int Sell7 = 2131034168;
-			
-			// aapt resource value: 0x7f05003a
-			public const int Sell8 = 2131034170;
+			// aapt resource value: 0x7f050039
+			public const int Sell7 = 2131034169;
 			
 			// aapt resource value: 0x7f05003c
-			public const int Sell9 = 2131034172;
+			public const int Sell8 = 2131034172;
+			
+			// aapt resource value: 0x7f05003f
+			public const int Sell9 = 2131034175;
 			
 			// aapt resource value: 0x7f05001a
 			public const int Toys = 2131034138;

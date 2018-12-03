@@ -54,17 +54,17 @@ namespace HealthAndCat.Resources.layout
         #endregion
 
         #region Toy values in store - Page 2
-        public TextView CastleToy;
-        private int CastleToyCost = 10;
-        public static int CastleToys = 0;
+        public TextView BowlingLeisure;
+        private int BowlingCost = 10;
+        public static int Bowlings = 0;
 
-        public TextView BallToy;
-        private int BallToyCost = 20;
-        public static int BallToys = 0;
+        public TextView MovieLeisure;
+        private int MovieCost = 20;
+        public static int Movies = 0;
 
-        public TextView MouseToy;
-        private int MouseToyCost = 40;
-        public static int MouseToys = 0;
+        public TextView GolfLeisure;
+        private int GolfCost = 40;
+        public static int Golf = 0;
         #endregion
 
         private List<Button> _buyButtons = new List<Button>();
@@ -106,14 +106,14 @@ namespace HealthAndCat.Resources.layout
             #endregion
 
             #region Toy views in store - Page 2
-            CastleToy = FindViewById<TextView>(Resource.Id.CastleToy);
-            CastleToy.Text = "Castle - $" + BallToyCost.ToString();
+            BowlingLeisure = FindViewById<TextView>(Resource.Id.BowlingText);
+            BowlingLeisure.Text = "Bowling - $" + MovieCost.ToString();
 
-            BallToy = FindViewById<TextView>(Resource.Id.BallToy);
-            BallToy.Text = "Ball - $" + BallToyCost.ToString();
+            MovieLeisure = FindViewById<TextView>(Resource.Id.MovieText);
+            MovieLeisure.Text = "Movie - $" + MovieCost.ToString();
 
-            MouseToy = FindViewById<TextView>(Resource.Id.MouseToy);
-            MouseToy.Text = "Mouse - $" + MouseToyCost.ToString();
+            GolfLeisure = FindViewById<TextView>(Resource.Id.GolfText);
+            GolfLeisure.Text = "Golf - $" + GolfCost.ToString();
             #endregion
 
             #region Buttons for buying/selling Food/Toys
@@ -212,31 +212,31 @@ namespace HealthAndCat.Resources.layout
                     // ******
                     // Toys
                     // ******
-                    case "Castle Toy":
-                        if (MainActivity.PlayerCurrency >= CastleToyCost)
+                    case "Bowling":
+                        if (MainActivity.PlayerCurrency >= BowlingCost)
                         {
-                            MainActivity.PlayerCurrency -= CastleToyCost;
-                            CastleToys += 1;
+                            MainActivity.PlayerCurrency -= BowlingCost;
+                            Bowlings += 1;
 
-                            CommitIntToStorage("Castle Toys", CastleToys);
+                            CommitIntToStorage("Bowlings", Bowlings);
                         }
                         break;
-                    case "Ball Toy":
-                        if (MainActivity.PlayerCurrency >= BallToyCost)
+                    case "Movie":
+                        if (MainActivity.PlayerCurrency >= MovieCost)
                         {
-                            MainActivity.PlayerCurrency -= BallToyCost;
-                            BallToys += 1;
+                            MainActivity.PlayerCurrency -= MovieCost;
+                            Movies += 1;
 
-                            CommitIntToStorage("Ball Toys", BallToys);
+                            CommitIntToStorage("Movies", Movies);
                         }
                         break;
-                    case "Mouse Toy":
-                        if (MainActivity.PlayerCurrency >= MouseToyCost)
+                    case "Golf":
+                        if (MainActivity.PlayerCurrency >= GolfCost)
                         {
-                            MainActivity.PlayerCurrency -= MouseToyCost;
-                            MouseToys += 1;
+                            MainActivity.PlayerCurrency -= GolfCost;
+                            Golf += 1;
 
-                            CommitIntToStorage("Mouse Toys", MouseToys);
+                            CommitIntToStorage("Golf", Golf);
                         }
                         break;
                     // ******
@@ -302,33 +302,33 @@ namespace HealthAndCat.Resources.layout
                 switch (buttonClicked.Tag.ToString())
                 {
                     // ******
-                    // Toys
+                    // Leisures
                     // ******
-                    case "Castle Toy":
-                        if (CastleToys > 0)
+                    case "Bowling":
+                        if (Bowlings > 0)
                         {
-                            MainActivity.PlayerCurrency += CastleToyCost;
-                            CastleToys -= 1;
+                            MainActivity.PlayerCurrency += BowlingCost;
+                            Bowlings -= 1;
 
-                            CommitIntToStorage("Castle Toys", CastleToys);
+                            CommitIntToStorage("Bowlings", Bowlings);
                         }
                         break;
-                    case "Ball Toy":
-                        if (BallToys > 0)
+                    case "Movie":
+                        if (Movies > 0)
                         {
-                            MainActivity.PlayerCurrency += BallToyCost;
-                            BallToys -= 1;
+                            MainActivity.PlayerCurrency += MovieCost;
+                            Movies -= 1;
 
-                            CommitIntToStorage("Ball Toys", BallToys);
+                            CommitIntToStorage("Movies", Movies);
                         }
                         break;
-                    case "Mouse Toy":
-                        if (MouseToys > 0)
+                    case "Golf":
+                        if (Golf > 0)
                         {
-                            MainActivity.PlayerCurrency += MouseToyCost;
-                            MouseToys -= 1;
+                            MainActivity.PlayerCurrency += GolfCost;
+                            Golf -= 1;
 
-                            CommitIntToStorage("Mouse Toys", MouseToys);
+                            CommitIntToStorage("Golf", Golf);
                         }
                         break;
                     // ******

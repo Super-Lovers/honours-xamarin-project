@@ -81,7 +81,7 @@ namespace HealthAndCat
             }
 
             _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
-            if (localSlaveData.GetBoolean("Played With Toy", false))
+            if (localSlaveData.GetBoolean("Had Leisure", false))
             {
                 _toysTimer.Enabled = true;
                 _toysTimer.Visibility = Android.Views.ViewStates.Visible;
@@ -95,7 +95,7 @@ namespace HealthAndCat
                 _toysTimer.Visibility = Android.Views.ViewStates.Gone;
             }
 
-            if (localSlaveData.Contains("TakenCatOut"))
+            if (localSlaveData.Contains("WentExercising"))
             {
                 // Depending if the player has taken out his cat out
                 // recently, the button for doing that will be toggled accordingly.
@@ -118,7 +118,7 @@ namespace HealthAndCat
                     DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
                 {
                     _takeCatOut.Enabled = true;
-                    _takeCatOut.Text = "Take cat out";
+                    _takeCatOut.Text = "Go exercising out";
                 }
                 else
                 {
@@ -171,7 +171,7 @@ namespace HealthAndCat
             if (localSlaveData.Contains("Year Of Play"))
             {
                 _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
-                if (localSlaveData.GetBoolean("Played With Toy", false))
+                if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
                     _toysTimer.Enabled = true;
                     _toysTimer.Visibility = Android.Views.ViewStates.Visible;
@@ -209,7 +209,7 @@ namespace HealthAndCat
                 _mealTimer.Visibility = Android.Views.ViewStates.Gone;
             }
 
-                if (localSlaveData.GetBoolean("TakenCatOut", false))
+                if (localSlaveData.GetBoolean("WentExercising", false))
             {
                 _walkTimer.Enabled = true;
                 _walkTimer.Visibility = Android.Views.ViewStates.Visible;
@@ -312,7 +312,7 @@ namespace HealthAndCat
                 //Console.WriteLine("New Beginning");
             }
 
-            if (localSlaveData.Contains("Played With Toy"))
+            if (localSlaveData.Contains("Had Leisure"))
             {
                 // Depending if the player has taken out his cat out
                 // recently, the button for doing that will be toggled accordingly.
@@ -327,24 +327,24 @@ namespace HealthAndCat
                 
                 if (DateTime.Now > dateOfLastPlay)
                 {
-                    localSlaveDataEdit.PutBoolean("Played With Toy", false);
+                    localSlaveDataEdit.PutBoolean("Had Leisure", false);
                     localSlaveDataEdit.Commit();
                 }
                 else
                 {
-                    localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                    localSlaveDataEdit.PutBoolean("Had Leisure", true);
                     localSlaveDataEdit.Commit();
                 }
             }
             else
             {
-                localSlaveDataEdit.PutBoolean("Played With Toy", false);
+                localSlaveDataEdit.PutBoolean("Had Leisure", false);
             }
 
             _takeCatOut = FindViewById<Button>(Resource.Id.button3);
             _takeCatOut.Click += TakeCatForAWalk;
             
-            if (localSlaveData.Contains("TakenCatOut"))
+            if (localSlaveData.Contains("WentExercising"))
             {
                 // Depending if the player has taken out his cat out
                 // recently, the button for doing that will be toggled accordingly.
@@ -367,15 +367,15 @@ namespace HealthAndCat
                     DateTime.Now.Hour >= 8 && DateTime.Now.Hour < 20) // Between 8AM and 20PM
                 {
                     _takeCatOut.Enabled = true;
-                    _takeCatOut.Text = "Take cat out";
-                    localSlaveDataEdit.PutBoolean("TakenCatOut", false);
+                    _takeCatOut.Text = "Go exercising out";
+                    localSlaveDataEdit.PutBoolean("WentExercising", false);
                     localSlaveDataEdit.Commit();
                 } else
                 {
                     if (DateTime.Now < dateOfLastWalk)
                     {
                         _takeCatOut.Text = "Cant go out at this time!";
-                        localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+                        localSlaveDataEdit.PutBoolean("WentExercising", true);
                     } else
                     {
                         _takeCatOut.Text = "It's too late to go out!";
@@ -385,7 +385,7 @@ namespace HealthAndCat
                 }
             } else
             {
-                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
+                localSlaveDataEdit.PutBoolean("WentExercising", false);
             }
 
             TextView DayCounterView = FindViewById<TextView>(Resource.Id.textView3);
@@ -558,7 +558,7 @@ namespace HealthAndCat
             localSlaveDataEdit.PutInt("Day Of Walk", DateTime.Now.Day);
             localSlaveDataEdit.PutInt("Hour Of Walk", DateTime.Now.Hour);
 
-            localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+            localSlaveDataEdit.PutBoolean("WentExercising", true);
             localSlaveDataEdit.Commit();
 
             _takeCatOut.Enabled = false;

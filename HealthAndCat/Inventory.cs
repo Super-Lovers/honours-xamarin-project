@@ -30,9 +30,9 @@ namespace HealthAndCat
         #endregion
 
         #region Toy values in store - Page 2
-        public TextView CastleToy;
-        public TextView BallToy;
-        public TextView MouseToy;
+        public TextView BowlingLeisure;
+        public TextView MovieLeisure;
+        public TextView GolfLeisure;
         #endregion
 
         private List<Button> _useItemButtons = new List<Button>();
@@ -55,15 +55,15 @@ namespace HealthAndCat
             
             if (DateTime.Now < dateOfLastWalk)
             {
-                localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+                localSlaveDataEdit.PutBoolean("WentExercising", true);
             }
             else
             {
-                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
+                localSlaveDataEdit.PutBoolean("WentExercising", false);
             }
             localSlaveDataEdit.Commit();
 
-            if (localSlaveData.GetBoolean("TakenCatOut", false))
+            if (localSlaveData.GetBoolean("WentExercising", false))
             {
                 foreach (var button in _useItemButtons)
                 {
@@ -71,13 +71,13 @@ namespace HealthAndCat
                 }
             } else
             {
-                if (localSlaveData.GetBoolean("Played With Toy", false))
+                if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() == "Mouse Toy" ||
-                            button.Tag.ToString() == "Castle Toy" ||
-                            button.Tag.ToString() == "Ball Toy")
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
                             button.Enabled = false;
                     }
                 }
@@ -85,9 +85,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() == "Mouse Toy" ||
-                            button.Tag.ToString() == "Castle Toy" ||
-                            button.Tag.ToString() == "Ball Toy")
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
                             button.Enabled = true;
                     }
                 }
@@ -96,9 +96,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() != "Mouse Toy" &&
-                            button.Tag.ToString() != "Castle Toy" &&
-                            button.Tag.ToString() != "Ball Toy")
+                        if (button.Tag.ToString() != "Bowling" &&
+                            button.Tag.ToString() != "Movie" &&
+                            button.Tag.ToString() != "Golf")
                             button.Enabled = false;
                     }
                 }
@@ -106,9 +106,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() != "Mouse Toy" &&
-                            button.Tag.ToString() != "Castle Toy" &&
-                            button.Tag.ToString() != "Ball Toy")
+                        if (button.Tag.ToString() != "Bowling" &&
+                            button.Tag.ToString() != "Movie" &&
+                            button.Tag.ToString() != "Golf")
                             button.Enabled = true;
                     }
                 }
@@ -196,38 +196,38 @@ namespace HealthAndCat
             #endregion
 
             #region Toy views in store - Page 2
-            if (localSlaveData.Contains("Castle Toys"))
+            if (localSlaveData.Contains("Bowlings"))
             {
-                HealthAndCat.Resources.layout.Store.CastleToys = localSlaveData.GetInt("Castle Toys", 0);
+                HealthAndCat.Resources.layout.Store.Bowlings = localSlaveData.GetInt("Bowlings", 0);
             }
             else
             {
-                HealthAndCat.Resources.layout.Store.CastleToys = 0;
+                HealthAndCat.Resources.layout.Store.Bowlings = 0;
             }
-            CastleToy = FindViewById<TextView>(Resource.Id.CastleToy);
-            CastleToy.Text = "Castles: " + HealthAndCat.Resources.layout.Store.CastleToys.ToString();
+            BowlingLeisure = FindViewById<TextView>(Resource.Id.Bowling);
+            BowlingLeisure.Text = "Bowling: " + HealthAndCat.Resources.layout.Store.Bowlings.ToString();
 
-            if (localSlaveData.Contains("Ball Toys"))
+            if (localSlaveData.Contains("Movies"))
             {
-                HealthAndCat.Resources.layout.Store.BallToys = localSlaveData.GetInt("Ball Toys", 0);
+                HealthAndCat.Resources.layout.Store.Movies = localSlaveData.GetInt("Movies", 0);
             }
             else
             {
-                HealthAndCat.Resources.layout.Store.BallToys = 0;
+                HealthAndCat.Resources.layout.Store.Movies = 0;
             }
-            BallToy = FindViewById<TextView>(Resource.Id.BallToy);
-            BallToy.Text = "Balls: " + HealthAndCat.Resources.layout.Store.BallToys.ToString();
+            MovieLeisure = FindViewById<TextView>(Resource.Id.Movies);
+            MovieLeisure.Text = "Movie: " + HealthAndCat.Resources.layout.Store.Movies.ToString();
 
-            if (localSlaveData.Contains("Mouse Toys"))
+            if (localSlaveData.Contains("Golf"))
             {
-                HealthAndCat.Resources.layout.Store.MouseToys = localSlaveData.GetInt("Mouse Toys", 0);
+                HealthAndCat.Resources.layout.Store.Golf = localSlaveData.GetInt("Golf", 0);
             }
             else
             {
-                HealthAndCat.Resources.layout.Store.MouseToys = 0;
+                HealthAndCat.Resources.layout.Store.Golf = 0;
             }
-            MouseToy = FindViewById<TextView>(Resource.Id.MouseToy);
-            MouseToy.Text = "Mice: " + HealthAndCat.Resources.layout.Store.MouseToys.ToString();
+            GolfLeisure = FindViewById<TextView>(Resource.Id.Golf);
+            GolfLeisure.Text = "Golf: " + HealthAndCat.Resources.layout.Store.Golf.ToString();
             #endregion
 
             #region Buttons for buying/selling Food/Toys
@@ -278,15 +278,15 @@ namespace HealthAndCat
             
             if (DateTime.Now < dateOfLastWalk)
             {
-                localSlaveDataEdit.PutBoolean("TakenCatOut", true);
+                localSlaveDataEdit.PutBoolean("WentExercising", true);
             } else
             {
-                localSlaveDataEdit.PutBoolean("TakenCatOut", false);
+                localSlaveDataEdit.PutBoolean("WentExercising", false);
             }
 
             localSlaveDataEdit.Commit();
 
-            if (localSlaveData.GetBoolean("TakenCatOut", false))
+            if (localSlaveData.GetBoolean("WentExercising", false))
             {
                 foreach (var button in _useItemButtons)
                 {
@@ -295,13 +295,13 @@ namespace HealthAndCat
             }
             else
             {
-                if (localSlaveData.GetBoolean("Played With Toy", false))
+                if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() == "Mouse Toy" ||
-                            button.Tag.ToString() == "Castle Toy" ||
-                            button.Tag.ToString() == "Ball Toy")
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
                             button.Enabled = false;
                     }
                 }
@@ -309,9 +309,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() == "Mouse Toy" ||
-                            button.Tag.ToString() == "Castle Toy" ||
-                            button.Tag.ToString() == "Ball Toy")
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
                             button.Enabled = true;
                     }
                 }
@@ -320,9 +320,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() != "Mouse Toy" &&
-                            button.Tag.ToString() != "Castle Toy" &&
-                            button.Tag.ToString() != "Ball Toy")
+                        if (button.Tag.ToString() != "Bowling" &&
+                            button.Tag.ToString() != "Movie" &&
+                            button.Tag.ToString() != "Golf")
                             button.Enabled = false;
                     }
                 }
@@ -330,9 +330,9 @@ namespace HealthAndCat
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() != "Mouse Toy" &&
-                            button.Tag.ToString() != "Castle Toy" &&
-                            button.Tag.ToString() != "Ball Toy")
+                        if (button.Tag.ToString() != "Bowling" &&
+                            button.Tag.ToString() != "Movie" &&
+                            button.Tag.ToString() != "Golf")
                             button.Enabled = true;
                     }
                 }
@@ -379,56 +379,56 @@ namespace HealthAndCat
                 switch (buttonClicked.Tag.ToString())
                 {
                     // ******
-                    // Toys
+                    // Leisures
                     // ******
-                    case "Castle Toy":
-                        if (HealthAndCat.Resources.layout.Store.CastleToys > 0)
+                    case "Bowling":
+                        if (HealthAndCat.Resources.layout.Store.Bowlings > 0)
                         {
-                            HealthAndCat.Resources.layout.Store.CastleToys--;
-                            CommitIntToStorage("Castle Toys", HealthAndCat.Resources.layout.Store.CastleToys);
+                            HealthAndCat.Resources.layout.Store.Bowlings--;
+                            CommitIntToStorage("Bowlings", HealthAndCat.Resources.layout.Store.Bowlings);
 
-                            CastleToy.Text = "Castles: " + localSlaveData.GetInt("Castle Toys", 0).ToString();
+                            BowlingLeisure.Text = "Bowlings: " + localSlaveData.GetInt("Bowlings", 0).ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
                             localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
                             localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
                             
-                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.PutBoolean("Had Leisure", true);
                             localSlaveDataEdit.Commit();
                         }
                         break;
-                    case "Ball Toy":
-                        if (HealthAndCat.Resources.layout.Store.BallToys > 0)
+                    case "Movie":
+                        if (HealthAndCat.Resources.layout.Store.Movies > 0)
                         {
-                            HealthAndCat.Resources.layout.Store.BallToys--;
-                            CommitIntToStorage("Ball Toys", HealthAndCat.Resources.layout.Store.BallToys);
+                            HealthAndCat.Resources.layout.Store.Movies--;
+                            CommitIntToStorage("Movies", HealthAndCat.Resources.layout.Store.Movies);
 
-                            BallToy.Text = "Balls: " + HealthAndCat.Resources.layout.Store.BallToys.ToString();
+                            MovieLeisure.Text = "Movies: " + HealthAndCat.Resources.layout.Store.Movies.ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
                             localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
                             localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
 
-                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.PutBoolean("Had Leisure", true);
                             localSlaveDataEdit.Commit();
                         }
                         break;
-                    case "Mouse Toy":
-                        if (HealthAndCat.Resources.layout.Store.MouseToys > 0)
+                    case "Golf":
+                        if (HealthAndCat.Resources.layout.Store.Golf > 0)
                         {
-                            HealthAndCat.Resources.layout.Store.MouseToys--;
-                            CommitIntToStorage("Mouse Toys", HealthAndCat.Resources.layout.Store.MouseToys);
+                            HealthAndCat.Resources.layout.Store.Golf--;
+                            CommitIntToStorage("Golf", HealthAndCat.Resources.layout.Store.Golf);
 
-                            MouseToy.Text = "Mice: " + HealthAndCat.Resources.layout.Store.MouseToys.ToString();
+                            GolfLeisure.Text = "Golf: " + HealthAndCat.Resources.layout.Store.Golf.ToString();
 
                             localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                             localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
                             localSlaveDataEdit.PutInt("Day Of Play", DateTime.Now.Day);
                             localSlaveDataEdit.PutInt("Hour Of Play", DateTime.Now.Hour);
 
-                            localSlaveDataEdit.PutBoolean("Played With Toy", true);
+                            localSlaveDataEdit.PutBoolean("Had Leisure", true);
                             localSlaveDataEdit.Commit();
                         }
                         break;
@@ -533,25 +533,24 @@ namespace HealthAndCat
                         break;
                 }
 
-                if (localSlaveData.GetBoolean("Played With Toy", false))
+                if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() == "Mouse Toy" ||
-                            button.Tag.ToString() == "Castle Toy" ||
-                            button.Tag.ToString() == "Ball Toy")
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
                             button.Enabled = false;
                     }
                 }
-
 
                 if (localSlaveData.GetBoolean("CanUseItem", false) == false)
                 {
                     foreach (var button in _useItemButtons)
                     {
-                        if (button.Tag.ToString() != "Mouse Toy" &&
-                            button.Tag.ToString() != "Castle Toy" &&
-                            button.Tag.ToString() != "Ball Toy")
+                        if (button.Tag.ToString() != "Bowling" &&
+                            button.Tag.ToString() != "Movie" &&
+                            button.Tag.ToString() != "Golf")
                             button.Enabled = false;
                     }
                 }

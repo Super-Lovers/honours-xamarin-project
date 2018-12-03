@@ -279,7 +279,7 @@
                     android:layout_row="0"
                     android:layout_column="0">
                     <ImageView
-                        android:src="@drawable/building"
+                        android:src="@drawable/bowling"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
@@ -290,7 +290,7 @@
                         android:text="Small Text"
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_height="wrap_content"
-                        android:id="@+id/CastleToy"
+                        android:id="@+id/Bowling"
                         android:textAlignment="center"
                         android:layout_width="wrap_content"
                         android:layout_gravity="center" />
@@ -299,7 +299,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35.5dp"
                         android:id="@+id/Use7"
-                        android:tag="Castle Toy" />
+                        android:tag="Bowling" />
                 </LinearLayout>
                 <Space
                     android:id="@+id/space1"
@@ -314,7 +314,7 @@
                     android:layout_row="0"
                     android:layout_column="2">
                     <ImageView
-                        android:src="@drawable/cattoy"
+                        android:src="@drawable/videocamera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
@@ -326,7 +326,7 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/BallToy"
+                        android:id="@+id/Movies"
                         android:textAlignment="center"
                         android:layout_gravity="center" />
                     <Button
@@ -334,7 +334,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35.5dp"
                         android:id="@+id/Use8"
-                        android:tag="Ball Toy" />
+                        android:tag="Movie" />
                 </LinearLayout>
                 <Space
                     android:id="@+id/space1"
@@ -349,7 +349,7 @@
                     android:layout_row="0"
                     android:layout_column="4">
                     <ImageView
-                        android:src="@drawable/mouse"
+                        android:src="@drawable/golf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/imageView1"
@@ -361,7 +361,7 @@
                         android:textAppearance="?android:attr/textAppearanceSmall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/MouseToy"
+                        android:id="@+id/Golf"
                         android:textAlignment="center"
                         android:layout_gravity="center" />
                     <Button
@@ -369,7 +369,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="35.5dp"
                         android:id="@+id/Use9"
-                        android:tag="Mouse Toy" />
+                        android:tag="Golf" />
                 </LinearLayout>
             </GridLayout>
         </LinearLayout>
