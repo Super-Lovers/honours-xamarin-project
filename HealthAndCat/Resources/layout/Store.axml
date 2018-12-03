@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/toggleButton1"
             android:textOn="Show Food"
-            android:textOff="Show Toys"
+            android:textOff="Show Leisure"
             android:layout_gravity="center" />
         <LinearLayout
             android:orientation="vertical"

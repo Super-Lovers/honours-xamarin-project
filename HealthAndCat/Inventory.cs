@@ -17,7 +17,7 @@ namespace HealthAndCat
     {
         public ToggleButton toggleFoodAndToys;
         public LinearLayout FoodsLayout;
-        public LinearLayout ToysLayout;
+        public LinearLayout LeisureLayout;
         private bool _toggleTab;
 
         #region Food values in store - Page 1
@@ -56,8 +56,7 @@ namespace HealthAndCat
             if (DateTime.Now < dateOfLastWalk)
             {
                 localSlaveDataEdit.PutBoolean("WentExercising", true);
-            }
-            else
+            } else
             {
                 localSlaveDataEdit.PutBoolean("WentExercising", false);
             }
@@ -69,7 +68,8 @@ namespace HealthAndCat
                 {
                     button.Enabled = false;
                 }
-            } else
+            }
+            else
             {
                 if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
@@ -78,7 +78,9 @@ namespace HealthAndCat
                         if (button.Tag.ToString() == "Bowling" ||
                             button.Tag.ToString() == "Movie" ||
                             button.Tag.ToString() == "Golf")
+                        {
                             button.Enabled = false;
+                        }
                     }
                 }
                 else
@@ -88,7 +90,9 @@ namespace HealthAndCat
                         if (button.Tag.ToString() == "Bowling" ||
                             button.Tag.ToString() == "Movie" ||
                             button.Tag.ToString() == "Golf")
+                        {
                             button.Enabled = true;
+                        }
                     }
                 }
 
@@ -99,7 +103,9 @@ namespace HealthAndCat
                         if (button.Tag.ToString() != "Bowling" &&
                             button.Tag.ToString() != "Movie" &&
                             button.Tag.ToString() != "Golf")
+                        {
                             button.Enabled = false;
+                        }
                     }
                 }
                 else
@@ -109,7 +115,43 @@ namespace HealthAndCat
                         if (button.Tag.ToString() != "Bowling" &&
                             button.Tag.ToString() != "Movie" &&
                             button.Tag.ToString() != "Golf")
+                        {
                             button.Enabled = true;
+                        }
+                    }
+                }
+            }
+
+            DateTime dateOfLastPlay = new DateTime(
+                        localSlaveData.GetInt("Year Of Play", 0),
+                        localSlaveData.GetInt("Month Of Play", 0),
+                        localSlaveData.GetInt("Day Of Play", 0),
+                        localSlaveData.GetInt("Hour Of Play", 0),
+                        0,
+                        0
+                    ).AddHours(6);
+
+            if (DateTime.Now > dateOfLastPlay && localSlaveData.GetBoolean("WentExercising", false) == false)
+            {
+                    foreach (var button in _useItemButtons)
+                    {
+                        if (button.Tag.ToString() == "Bowling" ||
+                            button.Tag.ToString() == "Movie" ||
+                            button.Tag.ToString() == "Golf")
+                        {
+                            button.Enabled = true;
+                        }
+                    }
+
+            } else
+            {
+                foreach (var button in _useItemButtons)
+                {
+                    if (button.Tag.ToString() == "Bowling" ||
+                        button.Tag.ToString() == "Movie" ||
+                        button.Tag.ToString() == "Golf")
+                    {
+                        button.Enabled = false;
                     }
                 }
             }
@@ -348,8 +390,8 @@ namespace HealthAndCat
 
             FoodsLayout = FindViewById<LinearLayout>(Resource.Id.Foods);
             FoodsLayout.Visibility = ViewStates.Visible;
-            ToysLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
-            ToysLayout.Visibility = ViewStates.Gone;
+            LeisureLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
+            LeisureLayout.Visibility = ViewStates.Gone;
         }
 
         private void ToggleFoodAndToys(object sender, EventArgs e)
@@ -357,13 +399,13 @@ namespace HealthAndCat
             if (_toggleTab)
             {
                 FoodsLayout.Visibility = ViewStates.Visible;
-                ToysLayout.Visibility = ViewStates.Gone;
+                LeisureLayout.Visibility = ViewStates.Gone;
                 _toggleTab = false;
             }
             else
             {
                 FoodsLayout.Visibility = ViewStates.Gone;
-                ToysLayout.Visibility = ViewStates.Visible;
+                LeisureLayout.Visibility = ViewStates.Visible;
                 _toggleTab = true;
             }
         }
@@ -455,7 +497,7 @@ namespace HealthAndCat
                         if (HealthAndCat.Resources.layout.Store.Cheese > 0)
                         {
                             HealthAndCat.Resources.layout.Store.Cheese--;
-                            CheeseLabel.Text = "Chees: " + HealthAndCat.Resources.layout.Store.Cheese.ToString();
+                            CheeseLabel.Text = "Cheese: " + HealthAndCat.Resources.layout.Store.Cheese.ToString();
 
                             CommitIntToStorage("Cheese Food", HealthAndCat.Resources.layout.Store.Cheese);
 

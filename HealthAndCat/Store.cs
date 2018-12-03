@@ -17,7 +17,7 @@ namespace HealthAndCat.Resources.layout
     {
         public ToggleButton toggleFoodAndToys;
         public LinearLayout FoodsLayout;
-        public LinearLayout ToysLayout;
+        public LinearLayout LeisureLayout;
         private bool _toggleTab;
         private TextView _currentCash;
 
@@ -177,8 +177,8 @@ namespace HealthAndCat.Resources.layout
             // we update their visibility
             FoodsLayout = FindViewById<LinearLayout>(Resource.Id.Foods);
             FoodsLayout.Visibility = ViewStates.Visible;
-            ToysLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
-            ToysLayout.Visibility = ViewStates.Gone;
+            LeisureLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
+            LeisureLayout.Visibility = ViewStates.Gone;
         }
 
         // When the button on top of the store interface is
@@ -189,12 +189,12 @@ namespace HealthAndCat.Resources.layout
             if (_toggleTab)
             {
                 FoodsLayout.Visibility = ViewStates.Visible;
-                ToysLayout.Visibility = ViewStates.Gone;
+                LeisureLayout.Visibility = ViewStates.Gone;
                 _toggleTab = false;
             } else
             {
                 FoodsLayout.Visibility = ViewStates.Gone;
-                ToysLayout.Visibility = ViewStates.Visible;
+                LeisureLayout.Visibility = ViewStates.Visible;
                 _toggleTab = true;
             }
         }

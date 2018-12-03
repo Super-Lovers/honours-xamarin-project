@@ -27,7 +27,7 @@ namespace HealthAndCat
         private Button _takeCatOut;
         private TextView _walkTimer;
         private TextView _mealTimer;
-        private TextView _toysTimer;
+        private TextView _leisureTimer;
 
         protected override void OnResume()
         {
@@ -40,24 +40,31 @@ namespace HealthAndCat
                 _timeIcon = FindViewById<ImageView>(Resource.Id.imageView2);
             }
 
+            ClockView = FindViewById<TextView>(Resource.Id.textView1);
+
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
             {
                 _timeIcon.SetImageResource(Resource.Drawable.sunny);
+                ClockView.Text = "Morning";
             }
             else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
             {
                 _timeIcon.SetImageResource(Resource.Drawable.sunny);
+                ClockView.Text = "Afternoon";
             }
             else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
             {
                 _timeIcon.SetImageResource(Resource.Drawable.sun);
+                ClockView.Text = "Evening";
             }
             else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
             {
                 _timeIcon.SetImageResource(Resource.Drawable.moon);
+                ClockView.Text = "Night";
             } else
             {
                 _timeIcon.SetImageResource(Resource.Drawable.moon);
+                ClockView.Text = "Night";
             }
 
             _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
@@ -80,19 +87,19 @@ namespace HealthAndCat
                 _mealTimer.Visibility = Android.Views.ViewStates.Gone;
             }
 
-            _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
+            _leisureTimer = FindViewById<TextView>(Resource.Id.textView6);
             if (localSlaveData.GetBoolean("Had Leisure", false))
             {
-                _toysTimer.Enabled = true;
-                _toysTimer.Visibility = Android.Views.ViewStates.Visible;
+                _leisureTimer.Enabled = true;
+                _leisureTimer.Visibility = Android.Views.ViewStates.Visible;
 
                 Timer timer = new Timer(new TimerCallback(UpdateClock));
                 timer.Change(1000, 1000);
             }
             else
             {
-                _toysTimer.Enabled = false;
-                _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+                _leisureTimer.Enabled = false;
+                _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
             }
 
             if (localSlaveData.Contains("WentExercising"))
@@ -170,19 +177,19 @@ namespace HealthAndCat
 
             if (localSlaveData.Contains("Year Of Play"))
             {
-                _toysTimer = FindViewById<TextView>(Resource.Id.textView6);
+                _leisureTimer = FindViewById<TextView>(Resource.Id.textView6);
                 if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
-                    _toysTimer.Enabled = true;
-                    _toysTimer.Visibility = Android.Views.ViewStates.Visible;
+                    _leisureTimer.Enabled = true;
+                    _leisureTimer.Visibility = Android.Views.ViewStates.Visible;
 
                     Timer timer = new Timer(new TimerCallback(UpdateClock));
                     timer.Change(1000, 1000);
                 }
                 else
                 {
-                    _toysTimer.Enabled = false;
-                    _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _leisureTimer.Enabled = false;
+                    _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
                 }
             } else
             {
@@ -506,7 +513,7 @@ namespace HealthAndCat
 
                 TimeSpan timeUntilNextWalk = dateOfLastWalk - DateTime.Now;
                 TimeSpan timeUntilNextMeal = dateOfLastMeal - DateTime.Now;
-                TimeSpan timeUntilNextPlay = dateOfLastPlay - DateTime.Now;
+                TimeSpan timeUntilNextLeisure = dateOfLastPlay - DateTime.Now;
 
                 if (timeUntilNextWalk.Minutes <= 1)
                 {
@@ -520,15 +527,15 @@ namespace HealthAndCat
                     _mealTimer.Visibility = Android.Views.ViewStates.Gone;
                 }
 
-                if (timeUntilNextPlay.Minutes <= 1)
+                if (timeUntilNextLeisure.Minutes <= 1)
                 {
-                    _toysTimer.Enabled = false;
-                    _toysTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _leisureTimer.Enabled = false;
+                    _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
                 }
 
                 _walkTimer.Text = "Returns after: " + timeUntilNextWalk.Hours + "h " + timeUntilNextWalk.Minutes + "m";
                 _mealTimer.Text = "Can eat after: " + timeUntilNextMeal.Hours + "h " + timeUntilNextMeal.Minutes + "m";
-                _toysTimer.Text = "Can play after: " + timeUntilNextPlay.Hours + "h " + timeUntilNextPlay.Minutes + "m";
+                _leisureTimer.Text = "Can play after: " + timeUntilNextLeisure.Hours + "h " + timeUntilNextLeisure.Minutes + "m";
                 //ClockView = FindViewById<TextView>(Resource.Id.textView1);
                 //ClockView.Text = DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second;
             });
