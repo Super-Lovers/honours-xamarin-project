@@ -92,11 +92,11 @@
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:id="@+id/linearLayout4">
-            <Button
-                p1:text="Take cat out"
-                p1:layout_width="match_parent"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/button3" />
+			<Button
+				p1:text="Take cat out"
+				p1:layout_width="match_parent"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/button3" />
             <TextView xmlns:tools="http://schemas.android.com/tools"
                 p1:textAppearance="?android:attr/textAppearanceSmall"
                 p1:layout_width="wrap_content"
@@ -105,17 +105,17 @@
                 p1:layout_gravity="center"
                 p1:text="Timer for walk"
                 tools:visibility="visible" />
-            <Button
-                p1:text="Store"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/button1"
-                p1:layout_gravity="center"
-                p1:layout_width="match_parent" />
-            <Button
-                p1:text="Inventory"
-                p1:layout_width="match_parent"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/button2" />
+			<Button
+				p1:text="Store"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/button1"
+				p1:layout_gravity="center"
+				p1:layout_width="match_parent" />
+			<Button
+				p1:text="Inventory"
+				p1:layout_width="match_parent"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/button2" />
             <TextView
                 p1:text="Timer for eating"
                 p1:textAppearance="?android:attr/textAppearanceSmall"

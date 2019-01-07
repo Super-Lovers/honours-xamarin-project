@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace HealthAndCat
 {
-    [Activity(Label = "HealthAndCat", MainLauncher = true)]
+    [Activity(Label = "HealthAndCat")]
     public class MainActivity : Activity
     {
         // The clock for the player to see the
@@ -151,7 +151,10 @@ namespace HealthAndCat
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
-            
+
+            Console.WriteLine(localSlaveData.GetString("Character Gender", null));
+            Console.WriteLine(localSlaveData.GetString("Character Name", null));
+
             _timeIcon = FindViewById<ImageView>(Resource.Id.imageView2);
             
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
@@ -484,32 +487,54 @@ namespace HealthAndCat
             {
                 var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
 
-                DateTime dateOfLastWalk = new DateTime(
-                        localSlaveData.GetInt("Year Of Walk", 0),
-                        localSlaveData.GetInt("Month Of Walk", 0),
-                        localSlaveData.GetInt("Day Of Walk", 0),
-                        localSlaveData.GetInt("Hour Of Walk", 0),
-                        0,
-                        0
-                    ).AddHours(3);
+                DateTime dateOfLastWalk = new DateTime();
+                DateTime dateOfLastMeal = new DateTime();
+                DateTime dateOfLastPlay = new DateTime();
 
-                DateTime dateOfLastMeal = new DateTime(
-                        localSlaveData.GetInt("Year Of Meal", 0),
-                        localSlaveData.GetInt("Month Of Meal", 0),
-                        localSlaveData.GetInt("Day Of Meal", 0),
-                        localSlaveData.GetInt("Hour Of Meal", 0),
-                        0,
-                        0
-                    ).AddHours(6);
+                if (localSlaveData.GetInt("Year Of Walk", 0) != 0 &&
+                    localSlaveData.GetInt("Month Of Walk", 0) != 0 &&
+                    localSlaveData.GetInt("Day Of Walk", 0) != 0 &&
+                    localSlaveData.GetInt("Hour Of Walk", 0) != 0)
+                {
+                    dateOfLastWalk = new DateTime(
+                            localSlaveData.GetInt("Year Of Walk", 0),
+                            localSlaveData.GetInt("Month Of Walk", 0),
+                            localSlaveData.GetInt("Day Of Walk", 0),
+                            localSlaveData.GetInt("Hour Of Walk", 0),
+                            0,
+                            0
+                        ).AddHours(3);
+                }
 
-                DateTime dateOfLastPlay = new DateTime(
-                        localSlaveData.GetInt("Year Of Play", 0),
-                        localSlaveData.GetInt("Month Of Play", 0),
-                        localSlaveData.GetInt("Day Of Play", 0),
-                        localSlaveData.GetInt("Hour Of Play", 0),
-                        0,
-                        0
-                    ).AddHours(6);
+                if (localSlaveData.GetInt("Year Of Meal", 0) != 0 &&
+                    localSlaveData.GetInt("Month Of Meal", 0) != 0 &&
+                    localSlaveData.GetInt("Day Of Meal", 0) != 0 &&
+                    localSlaveData.GetInt("Hour Of Meal", 0) != 0)
+                {
+                    dateOfLastMeal = new DateTime(
+                            localSlaveData.GetInt("Year Of Meal", 0),
+                            localSlaveData.GetInt("Month Of Meal", 0),
+                            localSlaveData.GetInt("Day Of Meal", 0),
+                            localSlaveData.GetInt("Hour Of Meal", 0),
+                            0,
+                            0
+                        ).AddHours(6);
+                }
+
+                if (localSlaveData.GetInt("Year Of Play", 0) != 0 &&
+                    localSlaveData.GetInt("Month Of Play", 0) != 0 &&
+                    localSlaveData.GetInt("Day Of Play", 0) != 0 &&
+                    localSlaveData.GetInt("Hour Of Play", 0) != 0)
+                {
+                    dateOfLastPlay = new DateTime(
+                            localSlaveData.GetInt("Year Of Play", 0),
+                            localSlaveData.GetInt("Month Of Play", 0),
+                            localSlaveData.GetInt("Day Of Play", 0),
+                            localSlaveData.GetInt("Hour Of Play", 0),
+                            0,
+                            0
+                        ).AddHours(6);
+                }
 
                 TimeSpan timeUntilNextWalk = dateOfLastWalk - DateTime.Now;
                 TimeSpan timeUntilNextMeal = dateOfLastMeal - DateTime.Now;

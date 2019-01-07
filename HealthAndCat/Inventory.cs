@@ -309,7 +309,14 @@ namespace HealthAndCat
             // Editing that new file with the new variable that uses editing mode.
             var localSlaveDataEdit = localSlaveData.Edit();
 
-            DateTime dateOfLastWalk = new DateTime(
+            DateTime dateOfLastWalk = new DateTime();
+
+            if (localSlaveData.GetInt("Year Of Walk", 0) != 0 &&
+                localSlaveData.GetInt("Month Of Walk", 0) != 0 &&
+                localSlaveData.GetInt("Day Of Walk", 0) != 0 &&
+                localSlaveData.GetInt("Hour Of Walk", 0) != 0)
+            {
+                dateOfLastWalk = new DateTime(
                          localSlaveData.GetInt("Year Of Walk", 0),
                          localSlaveData.GetInt("Month Of Walk", 0),
                          localSlaveData.GetInt("Day Of Walk", 0),
@@ -317,6 +324,7 @@ namespace HealthAndCat
                          0,
                          0
                      ).AddHours(3);
+            }
             
             if (DateTime.Now < dateOfLastWalk)
             {
