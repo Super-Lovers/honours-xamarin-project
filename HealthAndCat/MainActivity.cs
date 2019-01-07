@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace HealthAndCat
 {
-    [Activity(Label = "HealthAndCat")]
+    [Activity(Label = "HealthAndCat", Theme = "@android:style/Theme.Material")]
     public class MainActivity : Activity
     {
         // The clock for the player to see the

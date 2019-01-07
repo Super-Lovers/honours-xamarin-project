@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace HealthAndCat
 {
-    [Activity(Label = "Creator", MainLauncher = true)]
+    [Activity(Label = "Creator", Theme = "@android:style/Theme.Material")]
     public class Creator : Activity
     {
         public EditText nameOfCharacter;

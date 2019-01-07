@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace HealthAndCat
 {
-    [Activity(Label = "Inventory")]
+    [Activity(Label = "Inventory", Theme = "@android:style/Theme.Material")]
     public class Inventory : Activity
     {
         public ToggleButton toggleFoodAndToys;
