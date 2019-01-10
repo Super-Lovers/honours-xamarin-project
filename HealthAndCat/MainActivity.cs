@@ -5,6 +5,7 @@ using System;
 using Android.Content;
 using HealthAndCat.Resources.layout;
 using System.Threading;
+using Android.Views;
 
 namespace HealthAndCat
 {
@@ -155,6 +156,7 @@ namespace HealthAndCat
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource

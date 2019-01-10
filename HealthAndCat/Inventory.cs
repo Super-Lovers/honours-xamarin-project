@@ -159,6 +159,7 @@ namespace HealthAndCat
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.Inventory);
@@ -400,6 +401,12 @@ namespace HealthAndCat
             FoodsLayout.Visibility = ViewStates.Visible;
             LeisureLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
             LeisureLayout.Visibility = ViewStates.Gone;
+
+            ImageButton titleBackButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            titleBackButton.Click += delegate
+            {
+                OnBackPressed();
+            };
         }
 
         private void ToggleFoodAndToys(object sender, EventArgs e)

@@ -11,6 +11,22 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/linearLayout2">
+		<LinearLayout
+			p1:orientation="vertical"
+			p1:minWidth="25px"
+			p1:minHeight="25px"
+			p1:layout_width="match_parent"
+			p1:layout_height="wrap_content"
+			p1:id="@+id/linearLayout5" >
+			<TextView
+				p1:text="Main Menu"
+				p1:textAppearance="?android:attr/textAppearanceLarge"
+				p1:layout_width="match_parent"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/textView7"
+				p1:background="#ff000000"
+				p1:padding="10dp"/>
+		</LinearLayout>
         <GridLayout
             p1:minWidth="25px"
             p1:minHeight="25px"

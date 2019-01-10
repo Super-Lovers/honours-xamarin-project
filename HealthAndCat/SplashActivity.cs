@@ -20,6 +20,7 @@ namespace HealthAndCat
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
             StartActivity(new Intent(this, typeof(Creator)));
         }

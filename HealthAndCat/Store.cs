@@ -72,6 +72,7 @@ namespace HealthAndCat.Resources.layout
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
 
             // Create your application here
@@ -179,6 +180,12 @@ namespace HealthAndCat.Resources.layout
             FoodsLayout.Visibility = ViewStates.Visible;
             LeisureLayout = FindViewById<LinearLayout>(Resource.Id.Toys);
             LeisureLayout.Visibility = ViewStates.Gone;
+
+            ImageButton titleBackButton = FindViewById<ImageButton>(Resource.Id.imageButton1);
+            titleBackButton.Click += delegate
+            {
+                OnBackPressed();
+            };
         }
 
         // When the button on top of the store interface is

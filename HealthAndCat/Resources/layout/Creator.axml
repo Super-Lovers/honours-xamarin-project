@@ -12,8 +12,23 @@
 		android:minHeight="25px"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:id="@+id/linearLayout1"
-		android:padding="30dp">
+		android:id="@+id/linearLayout1">
+		<LinearLayout
+			android:orientation="vertical"
+			android:minWidth="25px"
+			android:minHeight="25px"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/linearLayout4">
+			<TextView
+				android:text="Create a Character"
+				android:textAppearance="?android:attr/textAppearanceLarge"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/textView5"
+				android:padding="10dp"
+				android:background="#ff000000" />
+		</LinearLayout>
 		<TextView
 			android:text="We will now create your character and move on to playing the game!"
 			android:textAppearance="?android:attr/textAppearanceMedium"
@@ -22,7 +37,8 @@
 			android:id="@+id/textView1"
 			android:layout_gravity="center_vertical|center"
 			android:gravity="center"
-			android:foregroundGravity="center"/>
+			android:foregroundGravity="center"
+			android:padding="30dp" />
 	</LinearLayout>
 	<LinearLayout
 		android:orientation="vertical"
