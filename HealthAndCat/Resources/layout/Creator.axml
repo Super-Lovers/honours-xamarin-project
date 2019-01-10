@@ -33,6 +33,17 @@
 		android:id="@+id/linearLayout2"
 		android:padding="30dp">
 		<TextView
+			android:text="You need 4 characters minimum out of 16!"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/textView4"
+			android:textSize="13dp"
+			android:visibility="invisible"
+			android:gravity="center"
+			android:textColor="#ffd50000"
+			android:textStyle="bold" />
+		<TextView
 			android:text="Name:"
 			android:textAppearance="?android:attr/textAppearanceMedium"
 			android:layout_width="match_parent"
@@ -45,7 +56,8 @@
 			android:layout_height="wrap_content"
 			android:id="@+id/editText1"
 			android:foregroundGravity="top"
-			android:layout_gravity="top"/>
+			android:layout_gravity="top"
+			android:autoLink="none"/>
 		<Space
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"

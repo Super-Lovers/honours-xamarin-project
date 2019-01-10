@@ -132,12 +132,21 @@
         p1:layout_height="wrap_content"
         p1:id="@+id/textView6"
         p1:layout_gravity="center" />
-    <ImageView
-        p1:src="@drawable/boy"
-        p1:layout_width="match_parent"
-        p1:layout_height="match_parent"
-        p1:id="@+id/imageView1"
-        p1:layout_marginBottom="0.0dp"
-        p1:scaleX="0.7"
-        p1:scaleY="0.7" />
+	<TextView
+		p1:text="Medium Text"
+		p1:textAppearance="?android:attr/textAppearanceMedium"
+		p1:layout_width="match_parent"
+		p1:layout_height="wrap_content"
+		p1:id="@+id/characterName"
+		p1:gravity="center" />
+	<ImageView
+		p1:src="@drawable/boy"
+		p1:layout_width="match_parent"
+		p1:id="@+id/imageView1"
+		p1:layout_marginBottom="0.0dp"
+		p1:scaleX="0.7"
+		p1:scaleY="0.7"
+		p1:layout_height="match_parent"
+		p1:foregroundGravity="bottom"
+		p1:layout_gravity="bottom" />
 </LinearLayout>

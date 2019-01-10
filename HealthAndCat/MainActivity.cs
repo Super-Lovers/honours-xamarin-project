@@ -29,11 +29,22 @@ namespace HealthAndCat
         private TextView _mealTimer;
         private TextView _leisureTimer;
 
+        private ImageView _playerPortrait;
+
         protected override void OnResume()
         {
             base.OnResume();
 
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
+
+            _playerPortrait = FindViewById<ImageView>(Resource.Id.imageView1);
+            if (localSlaveData.GetString("Character Gender", null) == "Male")
+            {
+                _playerPortrait.SetImageResource(Resource.Drawable.boy);
+            } else if (localSlaveData.GetString("Character Gender", null) == "Female")
+            {
+                _playerPortrait.SetImageResource(Resource.Drawable.woman);
+            }
 
             if (_timeIcon == null)
             {
@@ -152,10 +163,13 @@ namespace HealthAndCat
             var localSlaveData = GetSharedPreferences("SlaveData", FileCreationMode.Private);
             var localSlaveDataEdit = localSlaveData.Edit();
 
-            Console.WriteLine(localSlaveData.GetString("Character Gender", null));
-            Console.WriteLine(localSlaveData.GetString("Character Name", null));
+            //Console.WriteLine(localSlaveData.GetString("Character Gender", null));
+            //Console.WriteLine(localSlaveData.GetString("Character Name", null));
 
             _timeIcon = FindViewById<ImageView>(Resource.Id.imageView2);
+
+            TextView characterName = FindViewById<TextView>(Resource.Id.characterName);
+            characterName.Text = localSlaveData.GetString("Character Name", null);
             
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
             {
