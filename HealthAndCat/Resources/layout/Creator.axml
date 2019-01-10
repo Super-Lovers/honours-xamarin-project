@@ -27,7 +27,7 @@
 				android:layout_height="wrap_content"
 				android:id="@+id/textView5"
 				android:padding="10dp"
-				android:background="#ff000000" />
+				android:background="#ff000000"/>
 		</LinearLayout>
 		<TextView
 			android:text="We will now create your character and move on to playing the game!"

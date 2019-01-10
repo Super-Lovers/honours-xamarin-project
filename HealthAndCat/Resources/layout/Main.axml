@@ -103,24 +103,27 @@
                     p1:scaleY="1.2" />
             </GridLayout>
         </LinearLayout>
-        <LinearLayout
-            p1:orientation="vertical"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/linearLayout4">
+		<LinearLayout
+			p1:orientation="vertical"
+			p1:layout_width="match_parent"
+			p1:layout_height="wrap_content"
+			p1:id="@+id/linearLayout4"
+			p1:paddingLeft="60dp"
+			p1:paddingRight="60dp">
 			<Button
 				p1:text="Take cat out"
 				p1:layout_width="match_parent"
 				p1:layout_height="wrap_content"
 				p1:id="@+id/button3" />
-            <TextView xmlns:tools="http://schemas.android.com/tools"
-                p1:textAppearance="?android:attr/textAppearanceSmall"
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/textView4"
-                p1:layout_gravity="center"
-                p1:text="Timer for walk"
-                tools:visibility="visible" />
+			<TextView
+				xmlns:tools="http://schemas.android.com/tools"
+				p1:textAppearance="?android:attr/textAppearanceSmall"
+				p1:layout_width="wrap_content"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/textView4"
+				p1:layout_gravity="center"
+				p1:text="Timer for walk"
+				tools:visibility="visible" />
 			<Button
 				p1:text="Store"
 				p1:layout_height="wrap_content"
@@ -132,14 +135,14 @@
 				p1:layout_width="match_parent"
 				p1:layout_height="wrap_content"
 				p1:id="@+id/button2" />
-            <TextView
-                p1:text="Timer for eating"
-                p1:textAppearance="?android:attr/textAppearanceSmall"
-                p1:layout_width="wrap_content"
-                p1:layout_height="wrap_content"
-                p1:id="@+id/textView5"
-                p1:layout_gravity="center" />
-        </LinearLayout>
+			<TextView
+				p1:text="Timer for eating"
+				p1:textAppearance="?android:attr/textAppearanceSmall"
+				p1:layout_width="wrap_content"
+				p1:layout_height="wrap_content"
+				p1:id="@+id/textView5"
+				p1:layout_gravity="center" />
+		</LinearLayout>
     </LinearLayout>
     <TextView
         p1:text="Timer for playing"
@@ -154,7 +157,8 @@
 		p1:layout_width="match_parent"
 		p1:layout_height="wrap_content"
 		p1:id="@+id/characterName"
-		p1:gravity="center" />
+		p1:gravity="center"
+		p1:paddingTop="20dp" />
 	<ImageView
 		p1:src="@drawable/boy"
 		p1:layout_width="match_parent"
