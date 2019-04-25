@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using System.Text.RegularExpressions;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
@@ -46,7 +43,8 @@ namespace HealthAndCat
                 radioButton2 = FindViewById<RadioButton>(Resource.Id.radioButton2);
 
                 startButton.Click += StartGameButton;
-            } else
+            }
+            else
             {
                 Intent intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
@@ -80,8 +78,9 @@ namespace HealthAndCat
                     radioButton.Checked)
                 {
                     localSlaveDataEdit.PutString("Character Gender", "Male");
-                } else if (radioButton.Tag.ToString() == "Female" &&
-                    radioButton.Checked)
+                }
+                else if (radioButton.Tag.ToString() == "Female" &&
+                  radioButton.Checked)
                 {
                     localSlaveDataEdit.PutString("Character Gender", "Female");
                 }
@@ -89,16 +88,36 @@ namespace HealthAndCat
 
             localSlaveDataEdit.Commit();
 
+            Regex characterNameChars = new Regex("[!|@|#|$|%|^|&|*|(|)|{|}|:|<|>|?|~|`]", RegexOptions.CultureInvariant);
+            MatchCollection forbiddenCharacter = characterNameChars.Matches(nameOfCharacter.Text);
+
+            if (forbiddenCharacter.Count > 0)
+            {
+                Console.WriteLine(forbiddenCharacter);
+                Console.WriteLine(forbiddenCharacter.Count);
+                _warningLabel.Text = "Your name contains invalid characters!";
+                _warningLabel.Visibility = ViewStates.Visible;
+            }
+
             if (nameOfCharacter.Text.Length < 4)
             {
                 _warningLabel.Text = "You need 4 characters minimum out of 16!";
                 _warningLabel.Visibility = ViewStates.Visible;
-            } else if (nameOfCharacter.Text.Length > 16)
+            }
+            else if (nameOfCharacter.Text.Length > 16)
             {
                 _warningLabel.Text = "You have too many characters, remove " +
                     (_warningLabel.Text.Length - 16);
                 _warningLabel.Visibility = ViewStates.Visible;
-            } else
+            }
+            else if (forbiddenCharacter.Count > 0)
+            {
+                //Console.WriteLine(forbiddenCharacter);
+                //Console.WriteLine(forbiddenCharacter.Count);
+                _warningLabel.Text = "Your name contains invalid characters!";
+                _warningLabel.Visibility = ViewStates.Visible;
+            }
+            else
             {
                 Intent intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);

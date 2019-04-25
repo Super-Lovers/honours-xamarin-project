@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:p1="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     p1:orientation="vertical"
     p1:minWidth="25px"
     p1:minHeight="25px"
@@ -11,22 +13,22 @@
         p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
         p1:id="@+id/linearLayout2">
-		<LinearLayout
-			p1:orientation="vertical"
-			p1:minWidth="25px"
-			p1:minHeight="25px"
-			p1:layout_width="match_parent"
-			p1:layout_height="wrap_content"
-			p1:id="@+id/linearLayout5" >
-			<TextView
-				p1:text="Main Menu"
-				p1:textAppearance="?android:attr/textAppearanceLarge"
-				p1:layout_width="match_parent"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/textView7"
-				p1:background="#ff000000"
-				p1:padding="10dp"/>
-		</LinearLayout>
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:minWidth="25px"
+            p1:minHeight="25px"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/linearLayout5">
+            <TextView
+                p1:text="Main Menu"
+                p1:textAppearance="?android:attr/textAppearanceLarge"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/textView7"
+                p1:background="#ff000000"
+                p1:padding="10dp"/>
+        </LinearLayout>
         <GridLayout
             p1:minWidth="25px"
             p1:minHeight="25px"
@@ -103,70 +105,118 @@
                     p1:scaleY="1.2" />
             </GridLayout>
         </LinearLayout>
-		<LinearLayout
-			p1:orientation="vertical"
-			p1:layout_width="match_parent"
-			p1:layout_height="wrap_content"
-			p1:id="@+id/linearLayout4"
-			p1:paddingLeft="60dp"
-			p1:paddingRight="60dp">
-			<Button
-				p1:text="Take cat out"
-				p1:layout_width="match_parent"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/button3" />
-			<TextView
-				xmlns:tools="http://schemas.android.com/tools"
-				p1:textAppearance="?android:attr/textAppearanceSmall"
-				p1:layout_width="wrap_content"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/textView4"
-				p1:layout_gravity="center"
-				p1:text="Timer for walk"
-				tools:visibility="visible" />
-			<Button
-				p1:text="Store"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/button1"
-				p1:layout_gravity="center"
-				p1:layout_width="match_parent" />
-			<Button
-				p1:text="Inventory"
-				p1:layout_width="match_parent"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/button2" />
-			<TextView
-				p1:text="Timer for eating"
-				p1:textAppearance="?android:attr/textAppearanceSmall"
-				p1:layout_width="wrap_content"
-				p1:layout_height="wrap_content"
-				p1:id="@+id/textView5"
-				p1:layout_gravity="center" />
-		</LinearLayout>
+        <LinearLayout
+            p1:orientation="vertical"
+            p1:layout_width="match_parent"
+            p1:layout_height="wrap_content"
+            p1:id="@+id/linearLayout4"
+            p1:paddingLeft="60dp"
+            p1:paddingRight="60dp">
+            <Button
+                p1:text="Go for a walk"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button3" />
+            <GridLayout
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/gridLayout3">
+                <ImageView
+                    p1:src="@drawable/runningman"
+                    p1:id="@+id/imageView5"
+                    p1:layout_column="0" />
+                <Space
+                    p1:id="@+id/space2"
+                    p1:layout_column="1"
+                    p1:paddingLeft="20dp"
+                    p1:paddingRight="20dp"
+                    p1:layout_marginLeft="15dp" />
+                <TextView
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:id="@+id/textView4"
+                    p1:text="Timer for walk"
+                    tools:visibility="visible"
+                    p1:layout_gravity="center|left"
+                    p1:layout_column="2" />
+            </GridLayout>
+            <Button
+                p1:text="Store"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button1"
+                p1:layout_gravity="center"
+                p1:layout_width="match_parent" />
+            <Button
+                p1:text="Inventory"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/button2" />
+            <GridLayout
+                p1:id="@+id/gridLayout4"
+                p1:layout_width="wrap_content"
+                p1:layout_marginBottom="15.5dp"
+                p1:layout_height="match_parent">
+                <ImageView
+                    p1:id="@+id/imageView7"
+                    p1:layout_height="wrap_content"
+                    p1:layout_marginBottom="0.0dp"
+                    p1:layout_marginTop="0.0dp"
+                    p1:layout_marginRight="0.0dp"
+                    p1:layout_column="0"
+                    p1:maxHeight="10dp"
+                    p1:layout_width="wrap_content"
+                    p1:maxWidth="10dp"
+                    p1:src="@drawable/football"/>
+                <Space
+                    p1:id="@+id/space3"
+                    p1:layout_column="1"
+                    p1:layout_marginLeft="15dp" />
+                <TextView
+                    p1:text="Timer for playing"
+                    p1:textAppearance="?android:attr/textAppearanceSmall"
+                    p1:id="@+id/textView6"
+                    p1:layout_gravity="center|left"
+                    p1:layout_column="2"/>
+            </GridLayout>
+            <GridLayout
+                p1:minWidth="25px"
+                p1:minHeight="25px"
+                p1:layout_width="match_parent"
+                p1:layout_height="wrap_content"
+                p1:id="@+id/gridLayout5">
+                <ImageView
+                    p1:src="@drawable/silverware"
+                    p1:id="@+id/imageView6"
+                    p1:layout_column="0" />
+                <Space
+                    p1:id="@+id/space4"
+                    p1:layout_column="1"
+                    p1:layout_marginLeft="15dp" />
+                <TextView
+                    p1:text="Timer for eating"
+                    p1:id="@+id/textView5"
+                    p1:layout_gravity="center|left"
+                    p1:layout_column="2" />
+            </GridLayout>
+        </LinearLayout>
     </LinearLayout>
     <TextView
-        p1:text="Timer for playing"
-        p1:textAppearance="?android:attr/textAppearanceSmall"
-        p1:layout_width="wrap_content"
+        p1:text="Medium Text"
+        p1:textAppearance="?android:attr/textAppearanceMedium"
+        p1:layout_width="match_parent"
         p1:layout_height="wrap_content"
-        p1:id="@+id/textView6"
-        p1:layout_gravity="center" />
-	<TextView
-		p1:text="Medium Text"
-		p1:textAppearance="?android:attr/textAppearanceMedium"
-		p1:layout_width="match_parent"
-		p1:layout_height="wrap_content"
-		p1:id="@+id/characterName"
-		p1:gravity="center"
-		p1:paddingTop="20dp" />
-	<ImageView
-		p1:src="@drawable/boy"
-		p1:layout_width="match_parent"
-		p1:id="@+id/imageView1"
-		p1:layout_marginBottom="0.0dp"
-		p1:scaleX="0.7"
-		p1:scaleY="0.7"
-		p1:layout_height="match_parent"
-		p1:foregroundGravity="bottom"
-		p1:layout_gravity="bottom" />
+        p1:id="@+id/characterName"
+        p1:gravity="center"
+        p1:paddingTop="20dp" />
+    <ImageView
+        p1:src="@drawable/boy"
+        p1:layout_width="match_parent"
+        p1:id="@+id/imageView1"
+        p1:layout_marginBottom="0.0dp"
+        p1:scaleX="0.7"
+        p1:scaleY="0.7"
+        p1:layout_height="match_parent"
+        p1:foregroundGravity="bottom"
+        p1:layout_gravity="bottom" />
 </LinearLayout>

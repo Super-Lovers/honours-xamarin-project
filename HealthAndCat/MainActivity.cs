@@ -27,8 +27,11 @@ namespace HealthAndCat
         private Button _inventoryButton;
         private Button _takeCatOut;
         private TextView _walkTimer;
+        private ImageView _walkTimerIcon;
         private TextView _mealTimer;
+        private ImageView _mealTimerIcon;
         private TextView _leisureTimer;
+        private ImageView _leisureTimerIcon;
 
         private ImageView _playerPortrait;
 
@@ -42,7 +45,8 @@ namespace HealthAndCat
             if (localSlaveData.GetString("Character Gender", null) == "Male")
             {
                 _playerPortrait.SetImageResource(Resource.Drawable.boy);
-            } else if (localSlaveData.GetString("Character Gender", null) == "Female")
+            }
+            else if (localSlaveData.GetString("Character Gender", null) == "Female")
             {
                 _playerPortrait.SetImageResource(Resource.Drawable.woman);
             }
@@ -73,17 +77,20 @@ namespace HealthAndCat
             {
                 _timeIcon.SetImageResource(Resource.Drawable.moon);
                 ClockView.Text = "Night";
-            } else
+            }
+            else
             {
                 _timeIcon.SetImageResource(Resource.Drawable.moon);
                 ClockView.Text = "Night";
             }
 
             _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
+            _mealTimerIcon = FindViewById<ImageView>(Resource.Id.imageView6);
             if (localSlaveData.Contains("Year Of Meal"))
             {
                 _mealTimer.Enabled = true;
-                _mealTimer.Visibility = Android.Views.ViewStates.Visible;
+                _mealTimer.Visibility = ViewStates.Visible;
+                _mealTimerIcon.Visibility = ViewStates.Visible;
 
                 // The timer handles the text view's content after
                 // every interval of milliseconds.
@@ -96,14 +103,17 @@ namespace HealthAndCat
             else
             {
                 _mealTimer.Enabled = false;
-                _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+                _mealTimer.Visibility = ViewStates.Gone;
+                _mealTimerIcon.Visibility = ViewStates.Gone;
             }
 
             _leisureTimer = FindViewById<TextView>(Resource.Id.textView6);
+            _leisureTimerIcon = FindViewById<ImageView>(Resource.Id.imageView7);
             if (localSlaveData.GetBoolean("Had Leisure", false))
             {
                 _leisureTimer.Enabled = true;
-                _leisureTimer.Visibility = Android.Views.ViewStates.Visible;
+                _leisureTimer.Visibility = ViewStates.Visible;
+                _leisureTimerIcon.Visibility = ViewStates.Visible;
 
                 Timer timer = new Timer(new TimerCallback(UpdateClock));
                 timer.Change(1000, 1000);
@@ -111,7 +121,8 @@ namespace HealthAndCat
             else
             {
                 _leisureTimer.Enabled = false;
-                _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
+                _leisureTimer.Visibility = ViewStates.Gone;
+                _leisureTimerIcon.Visibility = ViewStates.Gone;
             }
 
             if (localSlaveData.Contains("WentExercising"))
@@ -172,7 +183,7 @@ namespace HealthAndCat
 
             TextView characterName = FindViewById<TextView>(Resource.Id.characterName);
             characterName.Text = localSlaveData.GetString("Character Name", null);
-            
+
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
             {
                 _timeIcon.SetImageResource(Resource.Drawable.sunny);
@@ -196,11 +207,13 @@ namespace HealthAndCat
 
             if (localSlaveData.Contains("Year Of Play"))
             {
-                _leisureTimer = FindViewById<TextView>(Resource.Id.textView6);
+                _leisureTimer = FindViewById<TextView>(Resource.Id.textView4);
+                _leisureTimerIcon = FindViewById<ImageView>(Resource.Id.imageView5);
                 if (localSlaveData.GetBoolean("Had Leisure", false))
                 {
                     _leisureTimer.Enabled = true;
-                    _leisureTimer.Visibility = Android.Views.ViewStates.Visible;
+                    _leisureTimer.Visibility = ViewStates.Visible;
+                    _leisureTimerIcon.Visibility = ViewStates.Visible;
 
                     Timer timer = new Timer(new TimerCallback(UpdateClock));
                     timer.Change(1000, 1000);
@@ -208,9 +221,11 @@ namespace HealthAndCat
                 else
                 {
                     _leisureTimer.Enabled = false;
-                    _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _leisureTimer.Visibility = ViewStates.Gone;
+                    _leisureTimerIcon.Visibility = ViewStates.Gone;
                 }
-            } else
+            }
+            else
             {
                 localSlaveDataEdit.PutInt("Year Of Play", DateTime.Now.Year);
                 localSlaveDataEdit.PutInt("Month Of Play", DateTime.Now.Month);
@@ -221,24 +236,30 @@ namespace HealthAndCat
             }
 
             _walkTimer = FindViewById<TextView>(Resource.Id.textView4);
+            _walkTimerIcon = FindViewById<ImageView>(Resource.Id.imageView5);
             _mealTimer = FindViewById<TextView>(Resource.Id.textView5);
+            _mealTimerIcon = FindViewById<ImageView>(Resource.Id.imageView6);
             if (localSlaveData.Contains("Year Of Meal"))
             {
                 _mealTimer.Enabled = true;
-                _mealTimer.Visibility = Android.Views.ViewStates.Visible;
-                
+                _mealTimer.Visibility = ViewStates.Visible;
+                _mealTimerIcon.Visibility = ViewStates.Visible;
+
                 Timer timer = new Timer(new TimerCallback(UpdateClock));
                 timer.Change(1000, 1000);
-            } else
+            }
+            else
             {
                 _mealTimer.Enabled = false;
-                _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+                _mealTimer.Visibility = ViewStates.Gone;
+                _mealTimerIcon.Visibility = ViewStates.Gone;
             }
 
-                if (localSlaveData.GetBoolean("WentExercising", false))
+            if (localSlaveData.GetBoolean("WentExercising", false))
             {
                 _walkTimer.Enabled = true;
-                _walkTimer.Visibility = Android.Views.ViewStates.Visible;
+                _walkTimer.Visibility = ViewStates.Visible;
+                _walkTimerIcon.Visibility = ViewStates.Visible;
 
                 // The timer handles the text view's content after
                 // every interval of milliseconds.
@@ -251,7 +272,8 @@ namespace HealthAndCat
             else
             {
                 _walkTimer.Enabled = false;
-                _walkTimer.Visibility = Android.Views.ViewStates.Gone;
+                _walkTimer.Visibility = ViewStates.Gone;
+                _walkTimerIcon.Visibility = ViewStates.Gone;
             }
 
             // If the player has started the game before, then we can extract
@@ -283,7 +305,8 @@ namespace HealthAndCat
                     ).AddDays(1);
 
                 //Console.WriteLine("Updated Time");
-            } else
+            }
+            else
             {
                 localSlaveDataEdit.PutInt("Year Of Previous Login", DateTime.Now.Year);
                 localSlaveDataEdit.PutInt("Month Of Previous Login", DateTime.Now.Month);
@@ -324,12 +347,14 @@ namespace HealthAndCat
                     localSlaveDataEdit.Commit();
 
                     //Console.WriteLine("New Time");
-                } else
+                }
+                else
                 {
                     DaysSinceBeginning = localSlaveData.GetInt("Days Since Beginning", 0);
                     //Console.WriteLine("Day " + DaysSinceBeginning);
                 }
-            } else
+            }
+            else
             {
                 localSlaveDataEdit.PutInt("Days Since Beginning", 0);
                 localSlaveDataEdit.Commit();
@@ -350,7 +375,7 @@ namespace HealthAndCat
                         0,
                         0
                     ).AddHours(6);
-                
+
                 if (DateTime.Now > dateOfLastPlay)
                 {
                     localSlaveDataEdit.PutBoolean("Had Leisure", false);
@@ -369,7 +394,7 @@ namespace HealthAndCat
 
             _takeCatOut = FindViewById<Button>(Resource.Id.button3);
             _takeCatOut.Click += TakeCatForAWalk;
-            
+
             if (localSlaveData.Contains("WentExercising"))
             {
                 // Depending if the player has taken out his cat out
@@ -396,20 +421,23 @@ namespace HealthAndCat
                     _takeCatOut.Text = "Go exercising out";
                     localSlaveDataEdit.PutBoolean("WentExercising", false);
                     localSlaveDataEdit.Commit();
-                } else
+                }
+                else
                 {
                     if (DateTime.Now < dateOfLastWalk)
                     {
                         _takeCatOut.Text = "Cant go out at this time!";
                         localSlaveDataEdit.PutBoolean("WentExercising", true);
-                    } else
+                    }
+                    else
                     {
                         _takeCatOut.Text = "It's too late to go out!";
                     }
                     _takeCatOut.Enabled = false;
                     localSlaveDataEdit.Commit();
                 }
-            } else
+            }
+            else
             {
                 localSlaveDataEdit.PutBoolean("WentExercising", false);
             }
@@ -452,13 +480,16 @@ namespace HealthAndCat
             if (DateTime.Now.Hour >= 5 && DateTime.Now.Hour <= 12) // Morning period
             {
                 ClockView.Text = "Morning";
-            } else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
+            }
+            else if (DateTime.Now.Hour > 12 && DateTime.Now.Hour <= 17)
             {
                 ClockView.Text = "Afternoon";
-            } else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
+            }
+            else if (DateTime.Now.Hour > 17 && DateTime.Now.Hour < 21)
             {
                 ClockView.Text = "Evening";
-            } else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
+            }
+            else if (DateTime.Now.Hour >= 21 && DateTime.Now.Hour < 5)
             {
                 ClockView.Text = "Night";
             }
@@ -490,7 +521,8 @@ namespace HealthAndCat
             {
                 CatView.ImageAlpha = 255;
                 _isCatClicked = false;
-            } else
+            }
+            else
             {
                 CatView.ImageAlpha = 155;
                 _isCatClicked = true;
@@ -559,19 +591,22 @@ namespace HealthAndCat
                 if (timeUntilNextWalk.Minutes <= 1)
                 {
                     _walkTimer.Enabled = false;
-                    _walkTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _walkTimer.Visibility = ViewStates.Gone;
+                    _walkTimerIcon.Visibility = ViewStates.Gone;
                 }
 
                 if (timeUntilNextMeal.Minutes <= 1)
                 {
                     _mealTimer.Enabled = false;
-                    _mealTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _mealTimer.Visibility = ViewStates.Gone;
+                    _mealTimerIcon.Visibility = ViewStates.Gone;
                 }
 
                 if (timeUntilNextLeisure.Minutes <= 1)
                 {
                     _leisureTimer.Enabled = false;
-                    _leisureTimer.Visibility = Android.Views.ViewStates.Gone;
+                    _leisureTimer.Visibility = ViewStates.Gone;
+                    _leisureTimerIcon.Visibility = ViewStates.Gone;
                 }
 
                 _walkTimer.Text = "Returns after: " + timeUntilNextWalk.Hours + "h " + timeUntilNextWalk.Minutes + "m";
@@ -585,7 +620,8 @@ namespace HealthAndCat
         private void TakeCatForAWalk(object sender, EventArgs e)
         {
             _walkTimer.Enabled = true;
-            _walkTimer.Visibility = Android.Views.ViewStates.Visible;
+            _walkTimer.Visibility = ViewStates.Visible;
+            _walkTimerIcon.Visibility = ViewStates.Visible;
 
             // The timer handles the text view's content after
             // every interval of milliseconds.
@@ -613,4 +649,3 @@ namespace HealthAndCat
         }
     }
 }
-
